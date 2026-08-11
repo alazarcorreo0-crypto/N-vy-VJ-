@@ -2,211 +2,272 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#fff7fb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>NÜVY · Villa Juárez</title>
 
 <style>
-*{box-sizing:border-box}
-:root{
-  --bg:#fff8fb;--card:#fff;--text:#29252a;--muted:#8c858c;
-  --primary:#c978a5;--primary2:#a95f8d;--soft:#f8e7f0;
-  --green:#62a88b;--red:#d96b72;--line:#eee5ea;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;touch-action:manipulation}
 body{
-  margin:0;background:var(--bg);color:var(--text);
+  background:#fff8fb;color:#29252a;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
 }
 button,input,select{font:inherit}
-button{border:0;cursor:pointer}
+button{cursor:pointer;border:0}
+button,input,select{touch-action:manipulation}
+input,select{
+  width:100%;padding:15px;border:1px solid #eee5ea;border-radius:15px;
+  background:#fff;color:#29252a;outline:0;
+}
+input:focus,select:focus{border-color:#c978a5}
 .app{min-height:100vh;padding-bottom:82px}
+.hidden{display:none!important}
+
 header{
-  height:72px;padding:14px 22px;display:flex;align-items:center;
-  justify-content:space-between;background:rgba(255,248,251,.94);
-  position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);
-  backdrop-filter:blur(15px)
+  height:72px;padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,248,251,.95);
+  border-bottom:1px solid #eee5ea;
+  backdrop-filter:blur(15px);
 }
 .brand{font-weight:900;font-size:25px;letter-spacing:3px}
-.brand small{display:block;font-size:9px;letter-spacing:1px;color:var(--muted);font-weight:600}
-.employee-top{font-size:12px;color:var(--muted);text-align:right}
-.employee-top b{display:block;color:var(--text);font-size:14px}
-main{max-width:1100px;margin:auto;padding:24px 18px}
-h1{font-size:30px;margin:5px 0 8px}
-h2{font-size:22px;margin:0 0 18px}
-.subtitle{color:var(--muted);margin-bottom:24px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.brand small{display:block;font-size:9px;letter-spacing:1px;color:#8c858c}
+.employee-button{
+  background:#f8e7f0;border-radius:16px;padding:8px 13px;
+  text-align:right;color:#a95f8d;
+}
+.employee-button span{display:block;font-size:10px;color:#8c858c}
+.employee-button b{font-size:13px}
+
+main{max-width:1100px;margin:auto;padding:24px 17px}
+h1{font-size:30px;margin:4px 0 7px}
+h2{font-size:21px;margin:0 0 17px}
+.subtitle{color:#8c858c;margin:0 0 23px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
 @media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
 .card{
-  background:var(--card);border:1px solid var(--line);border-radius:24px;
-  padding:20px;box-shadow:0 5px 20px rgba(70,30,50,.04)
+  background:#fff;border:1px solid #eee5ea;border-radius:23px;
+  padding:19px;box-shadow:0 5px 20px rgba(70,30,50,.045)
 }
-.menu-card{min-height:130px;text-align:left;transition:.15s}
-.menu-card:active{transform:scale(.97)}
-.menu-card .icon{font-size:31px;margin-bottom:15px}
-.menu-card b{font-size:17px;display:block}
-.menu-card span{font-size:12px;color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:22px}
+.menu-card{min-height:128px;text-align:left}
+.menu-card:active{transform:scale(.98)}
+.menu-card .icon{font-size:30px;margin-bottom:13px}
+.menu-card b{display:block;font-size:16px}
+.menu-card span{font-size:12px;color:#8c858c}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-bottom:20px}
 @media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}}
-.stat{padding:18px;border-radius:20px;background:var(--soft)}
-.stat span{font-size:12px;color:var(--muted)}
-.stat strong{display:block;font-size:23px;margin-top:5px}
-.bottom{
-  position:fixed;bottom:0;left:0;right:0;height:72px;background:#fff;
-  border-top:1px solid var(--line);display:flex;justify-content:center;
-  gap:5px;z-index:20;padding:7px
-}
-.nav{
-  flex:1;max-width:130px;background:none;border-radius:18px;color:var(--muted);
-  font-size:11px
-}
-.nav.active{background:var(--soft);color:var(--primary2);font-weight:700}
-.nav div{font-size:21px;margin-bottom:2px}
+.stat{padding:17px;border-radius:19px;background:#f8e7f0}
+.stat span{font-size:11px;color:#8c858c}
+.stat strong{display:block;font-size:21px;margin-top:5px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+label{display:block;font-size:12px;color:#8c858c;margin:14px 0 7px}
 .primary{
-  width:100%;padding:17px;border-radius:17px;background:var(--primary);
-  color:#fff;font-weight:800;font-size:17px
+  width:100%;padding:17px;border-radius:17px;
+  background:#c978a5;color:white;font-weight:800;font-size:17px;
 }
 .secondary{
-  padding:13px 17px;border-radius:14px;background:var(--soft);
-  color:var(--primary2);font-weight:700
+  padding:12px 15px;border-radius:14px;background:#f8e7f0;
+  color:#a95f8d;font-weight:700;
 }
-.danger{background:#fde8e9;color:var(--red)}
-input,select{
-  width:100%;padding:15px;border-radius:14px;border:1px solid var(--line);
-  background:#fff;color:var(--text);outline:none
-}
-input:focus,select:focus{border-color:var(--primary)}
-label{display:block;font-size:12px;color:var(--muted);margin:15px 0 7px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.total{
-  font-size:38px;font-weight:900;text-align:center;margin:22px 0
-}
+.danger{background:#fde8e9;color:#c95660}
 .weight{
-  font-size:55px;font-weight:900;text-align:center;padding:24px;
-  background:var(--soft);border-radius:25px
+  text-align:center;font-size:54px;font-weight:900;
+  padding:22px;background:#f8e7f0;border-radius:24px;margin:16px 0;
 }
-.payment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.total{text-align:center;font-size:39px;font-weight:900;margin:18px 0}
+.payment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .pay{
-  padding:18px 5px;border-radius:17px;background:#fff;border:1px solid var(--line);
-  text-align:center;font-weight:700
+  padding:16px 5px;border-radius:16px;background:white;
+  border:1px solid #eee5ea;font-weight:700;
 }
-.pay.active{border:2px solid var(--primary);background:var(--soft);color:var(--primary2)}
+.pay.active{border:2px solid #c978a5;background:#f8e7f0;color:#a95f8d}
+.change-box{
+  margin-top:14px;padding:18px;border-radius:18px;background:#f1f8f5;
+}
+.change-box strong{font-size:27px;color:#43856b}
 .table{width:100%;border-collapse:collapse}
-.table th,.table td{text-align:left;padding:13px 7px;border-bottom:1px solid var(--line);font-size:13px}
-.table th{color:var(--muted);font-weight:600}
-.empty{text-align:center;color:var(--muted);padding:35px}
-.badge{padding:5px 9px;border-radius:20px;background:var(--soft);font-size:11px}
-.modal{
-  position:fixed;inset:0;background:rgba(30,20,25,.42);z-index:50;
-  display:none;align-items:flex-end;justify-content:center
+.table th,.table td{
+  padding:12px 6px;border-bottom:1px solid #eee5ea;
+  text-align:left;font-size:12px;
 }
-.modal.show{display:flex}
-.modal-box{
-  background:#fff;width:100%;max-width:560px;border-radius:28px 28px 0 0;
-  padding:25px;max-height:90vh;overflow:auto
+.table th{color:#8c858c}
+.badge{
+  display:inline-block;padding:5px 9px;border-radius:20px;
+  background:#f8e7f0;color:#a95f8d;font-size:10px;font-weight:700;
 }
+.empty{text-align:center;padding:32px;color:#8c858c}
+
+.bottom{
+  position:fixed;left:0;right:0;bottom:0;height:73px;
+  background:white;border-top:1px solid #eee5ea;z-index:30;
+  display:flex;justify-content:center;padding:7px;gap:4px;
+}
+.nav{
+  flex:1;max-width:135px;background:none;border-radius:17px;
+  color:#8c858c;font-size:10px;
+}
+.nav div{font-size:21px}
+.nav.active{background:#f8e7f0;color:#a95f8d;font-weight:700}
+
 .pin-screen{
-  position:fixed;inset:0;background:var(--bg);z-index:100;
-  display:flex;align-items:center;justify-content:center;padding:20px
+  position:fixed;inset:0;z-index:100;background:#fff8fb;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;touch-action:manipulation;
 }
 .pin-box{width:100%;max-width:420px;text-align:center}
 .logo{
-  width:82px;height:82px;border-radius:50%;margin:0 auto 18px;
-  display:grid;place-items:center;background:var(--soft);
-  color:var(--primary2);font-size:24px;font-weight:900;letter-spacing:2px
+  width:82px;height:82px;border-radius:50%;margin:0 auto 17px;
+  background:#f8e7f0;color:#a95f8d;
+  display:grid;place-items:center;font-size:25px;font-weight:900;
 }
-.pin-dots{font-size:30px;letter-spacing:8px;height:48px;margin:18px}
-.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.key{
-  height:65px;border-radius:18px;background:#fff;border:1px solid var(--line);
-  font-size:22px;font-weight:700
-}
-.key:active{background:var(--soft)}
-.employee-select{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.employee-select{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0}
 .emp{
-  padding:16px;border-radius:17px;background:#fff;border:1px solid var(--line)
+  padding:15px;border-radius:16px;background:white;
+  border:1px solid #eee5ea;
 }
-.emp.active{border:2px solid var(--primary);background:var(--soft)}
+.emp.active{border:2px solid #c978a5;background:#f8e7f0}
+.pin-dots{height:45px;font-size:25px;letter-spacing:7px}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.key{
+  height:62px;border-radius:17px;background:#fff;
+  border:1px solid #eee5ea;font-size:21px;font-weight:700;
+}
+.key:active{background:#f8e7f0}
+.modal{
+  position:fixed;inset:0;background:rgba(30,20,25,.42);
+  z-index:80;display:none;align-items:flex-end;
+}
+.modal.show{display:flex}
+.modal-box{
+  width:100%;max-width:560px;margin:auto;
+  background:#fff;border-radius:27px 27px 0 0;
+  padding:24px;max-height:92vh;overflow:auto;
+}
 .toast{
   position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
-  background:#29252a;color:#fff;padding:13px 20px;border-radius:30px;
-  z-index:200;display:none;font-size:13px
+  z-index:200;background:#29252a;color:white;
+  padding:12px 18px;border-radius:30px;font-size:12px;
+  display:none;white-space:nowrap;
 }
 .toast.show{display:block}
-.hidden{display:none!important}
+.status{
+  font-size:10px;padding:5px 9px;border-radius:20px;
+  background:#eef7f2;color:#43856b;
+}
 </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 <div id="login" class="pin-screen">
   <div class="pin-box">
     <div class="logo">N</div>
     <div class="brand">NÜVY</div>
     <p class="subtitle">Villa Juárez</p>
 
-    <div class="employee-select" id="employeeSelect"></div>
+    <div id="employeeSelect" class="employee-select"></div>
 
-    <div class="pin-dots" id="pinDots">○ ○ ○ ○</div>
+    <div id="pinDots" class="pin-dots">○ ○ ○ ○</div>
 
     <div class="keypad">
-      <button class="key" onclick="key(1)">1</button>
-      <button class="key" onclick="key(2)">2</button>
-      <button class="key" onclick="key(3)">3</button>
-      <button class="key" onclick="key(4)">4</button>
-      <button class="key" onclick="key(5)">5</button>
-      <button class="key" onclick="key(6)">6</button>
-      <button class="key" onclick="key(7)">7</button>
-      <button class="key" onclick="key(8)">8</button>
-      <button class="key" onclick="key(9)">9</button>
-      <button class="key" onclick="clearPin()">⌫</button>
-      <button class="key" onclick="key(0)">0</button>
+      <button class="key" onclick="pressPin(1)">1</button>
+      <button class="key" onclick="pressPin(2)">2</button>
+      <button class="key" onclick="pressPin(3)">3</button>
+      <button class="key" onclick="pressPin(4)">4</button>
+      <button class="key" onclick="pressPin(5)">5</button>
+      <button class="key" onclick="pressPin(6)">6</button>
+      <button class="key" onclick="pressPin(7)">7</button>
+      <button class="key" onclick="pressPin(8)">8</button>
+      <button class="key" onclick="pressPin(9)">9</button>
+      <button class="key" onclick="backPin()">⌫</button>
+      <button class="key" onclick="pressPin(0)">0</button>
       <button class="key" onclick="login()">✓</button>
     </div>
   </div>
 </div>
 
+<!-- APP -->
 <div id="app" class="app hidden">
+
 <header>
   <div>
     <div class="brand">NÜVY</div>
     <small>VILLA JUÁREZ</small>
   </div>
-  <div class="employee-top">
+
+  <button class="employee-button" onclick="switchEmployee()">
     <span>Cobrando ahora</span>
     <b id="currentEmployee">—</b>
-  </div>
+  </button>
 </header>
 
 <main id="content"></main>
 
 <nav class="bottom">
-  <button class="nav active" onclick="go('home',this)"><div>⌂</div>Inicio</button>
-  <button class="nav" onclick="go('sale',this)"><div>＋</div>Venta</button>
-  <button class="nav" onclick="go('inventory',this)"><div>▣</div>Inventario</button>
-  <button class="nav" onclick="go('cash',this)"><div>＄</div>Caja</button>
-  <button class="nav" onclick="go('reports',this)"><div>◒</div>Reportes</button>
+  <button class="nav active" onclick="go('home',this)">
+    <div>⌂</div>Inicio
+  </button>
+  <button class="nav" onclick="go('sale',this)">
+    <div>＋</div>Venta
+  </button>
+  <button class="nav" onclick="go('inventory',this)">
+    <div>▣</div>Inventario
+  </button>
+  <button class="nav" onclick="go('cash',this)">
+    <div>＄</div>Caja
+  </button>
+  <button class="nav" onclick="go('reports',this)">
+    <div>◒</div>Reportes
+  </button>
 </nav>
+
 </div>
 
 <div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal-box" id="modalBox"></div>
+  <div id="modalBox" class="modal-box"></div>
 </div>
 
 <div id="toast" class="toast"></div>
 
 <script type="module">
 
-/* ================= FIREBASE ================= */
+/* =========================================================
+   FIREBASE
+========================================================= */
 
-import { initializeApp }
+import {initializeApp}
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
   getFirestore,
-  enableIndexedDbPersistence
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  query,
+  orderBy,
+  serverTimestamp,
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 const firebaseConfig={
   apiKey:"AIzaSyA_WDLvZiRSdlsOugdG-lVc2G5FBxe2EbM",
@@ -218,461 +279,1515 @@ const firebaseConfig={
 };
 
 const firebaseApp=initializeApp(firebaseConfig);
-const db=getFirestore(firebaseApp);
+const auth=getAuth(firebaseApp);
 
-enableIndexedDbPersistence(db).catch(()=>{});
+let db;
 
-/* ================= DATOS LOCALES ================= */
+try{
+  db=initializeFirestore(firebaseApp,{
+    localCache:persistentLocalCache({
+      tabManager:persistentMultipleTabManager()
+    })
+  });
+}catch(e){
+  db=getFirestore(firebaseApp);
+}
 
-const defaultData={
-  employees:[
-    {id:"ramon",name:"Ramón",role:"Owner",pin:"1234"},
-    {id:"itzel",name:"Itzel",role:"Owner",pin:"5678"},
-    {id:"empleado1",name:"Empleado 1",role:"Empleado",pin:"1111"},
-    {id:"empleado2",name:"Empleado 2",role:"Empleado",pin:"2222"}
-  ],
-  settings:{
-    price100:40,
-    business:"Nüvy Villa Juárez"
-  },
-  sales:[],
-  inventory:[],
-  cashClosings:[]
-};
+/* =========================================================
+   ESTADO
+========================================================= */
 
-let data=JSON.parse(localStorage.getItem("nuvyData")||"null")||defaultData;
+let employees=[];
 let currentEmployee=null;
 let selectedEmployee=null;
 let pin="";
 let page="home";
-let sale={grams:"",payment:"Efectivo"};
 
-function save(){
-  localStorage.setItem("nuvyData",JSON.stringify(data));
-}
+let sale={
+  grams:"",
+  payment:"Efectivo",
+  received:"",
+  status:"draft"
+};
+
+let settings={
+  pricePerGram:0.40,
+  businessName:"Nüvy Villa Juárez"
+};
+
+let sales=[];
+let inventory=[];
+let cashClosings=[];
+
+/* =========================================================
+   UTILIDADES
+========================================================= */
+
+const $=id=>document.getElementById(id);
 
 function money(n){
   return "$"+Number(n||0).toFixed(2);
 }
 
 function today(){
-  return new Date().toISOString().slice(0,10);
+  return new Date().toLocaleDateString("en-CA");
 }
 
-function toast(t){
-  const e=document.getElementById("toast");
-  e.textContent=t;e.classList.add("show");
-  setTimeout(()=>e.classList.remove("show"),2200);
+function timeNow(){
+  return new Date().toLocaleTimeString("es-MX",{
+    hour:"2-digit",minute:"2-digit"
+  });
 }
 
-/* ================= LOGIN ================= */
+function uid(prefix="NV"){
+  return prefix+"-"+Date.now()+"-"+Math.random().toString(36).slice(2,7);
+}
+
+function toast(message){
+  $("toast").textContent=message;
+  $("toast").classList.add("show");
+  setTimeout(()=>$("toast").classList.remove("show"),2200);
+}
+
+function isOwner(){
+  return currentEmployee?.role==="Owner";
+}
+
+function requireOwner(){
+  if(!isOwner()){
+    toast("Solo Owner puede hacer esto");
+    return false;
+  }
+  return true;
+}
+
+/* =========================================================
+   FIRESTORE CARGA
+========================================================= */
+
+async function loadData(){
+
+  try{
+
+    const settingsSnap=await getDoc(
+      doc(db,"settings","main")
+    );
+
+    if(settingsSnap.exists()){
+      settings={
+        ...settings,
+        ...settingsSnap.data()
+      };
+    }else{
+      await setDoc(doc(db,"settings","main"),settings);
+    }
+
+    const empSnap=await getDocs(collection(db,"employees"));
+
+    employees=empSnap.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+    if(!employees.length){
+      /*
+        DEMO INICIAL.
+        Estos usuarios son temporales.
+        Los datos definitivos deberán configurarse
+        mediante Authentication + reglas.
+      */
+      employees=[
+        {
+          id:"ramon",
+          name:"Ramón",
+          role:"Owner",
+          email:"",
+          pin:"1234",
+          active:true
+        },
+        {
+          id:"itzel",
+          name:"Itzel",
+          role:"Owner",
+          email:"",
+          pin:"5678",
+          active:true
+        },
+        {
+          id:"empleado1",
+          name:"Empleado 1",
+          role:"Empleado",
+          email:"",
+          pin:"1111",
+          active:true
+        },
+        {
+          id:"empleado2",
+          name:"Empleado 2",
+          role:"Empleado",
+          email:"",
+          pin:"2222",
+          active:true
+        }
+      ];
+
+      for(const e of employees){
+        await setDoc(
+          doc(db,"employees",e.id),
+          e
+        );
+      }
+    }
+
+    const salesSnap=await getDocs(
+      query(
+        collection(db,"sales"),
+        orderBy("createdAt","desc")
+      )
+    );
+
+    sales=salesSnap.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+    const invSnap=await getDocs(
+      collection(db,"inventory")
+    );
+
+    inventory=invSnap.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+    const cashSnap=await getDocs(
+      collection(db,"cashClosings")
+    );
+
+    cashClosings=cashSnap.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+  }catch(error){
+
+    console.error(error);
+
+    /*
+      Si Firebase todavía tiene las reglas cerradas,
+      la interfaz sigue arrancando para que podamos
+      continuar desarrollando.
+    */
+
+    employees=[
+      {id:"ramon",name:"Ramón",role:"Owner",pin:"1234",active:true},
+      {id:"itzel",name:"Itzel",role:"Owner",pin:"5678",active:true},
+      {id:"empleado1",name:"Empleado 1",role:"Empleado",pin:"1111",active:true},
+      {id:"empleado2",name:"Empleado 2",role:"Empleado",pin:"2222",active:true}
+    ];
+
+    sales=[];
+    inventory=[];
+    cashClosings=[];
+
+    toast("Modo local: Firebase aún no permite lectura");
+  }
+
+  renderEmployees();
+}
+
+/* =========================================================
+   GUARDAR EN FIRESTORE
+========================================================= */
+
+async function saveSale(s){
+
+  try{
+    await setDoc(
+      doc(db,"sales",s.id),
+      {
+        ...s,
+        createdAt:serverTimestamp()
+      }
+    );
+  }catch(e){
+    console.error("saveSale",e);
+    toast("Guardada localmente; pendiente de sincronizar");
+  }
+
+}
+
+async function saveInventoryItem(item){
+
+  try{
+    await setDoc(
+      doc(db,"inventory",item.id),
+      item
+    );
+  }catch(e){
+    console.error(e);
+  }
+
+}
+
+async function saveEmployee(e){
+
+  try{
+    await setDoc(
+      doc(db,"employees",e.id),
+      e
+    );
+  }catch(error){
+    console.error(error);
+    toast("No se pudo guardar en Firebase");
+  }
+
+}
+
+async function saveSettings(){
+
+  try{
+    await setDoc(
+      doc(db,"settings","main"),
+      settings
+    );
+  }catch(e){
+    console.error(e);
+  }
+
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 function renderEmployees(){
-  document.getElementById("employeeSelect").innerHTML=data.employees.map(e=>`
+
+  const active=employees.filter(e=>e.active!==false);
+
+  $("employeeSelect").innerHTML=active.map(e=>`
     <button class="emp ${selectedEmployee?.id===e.id?"active":""}"
       onclick="selectEmployee('${e.id}')">
-      <b>${e.name}</b><br><small>${e.role}</small>
-    </button>`).join("");
+      <b>${e.name}</b><br>
+      <small>${e.role}</small>
+    </button>
+  `).join("");
+
 }
 
 window.selectEmployee=id=>{
-  selectedEmployee=data.employees.find(e=>e.id===id);
+
+  selectedEmployee=employees.find(e=>e.id===id);
   pin="";
   updatePin();
   renderEmployees();
+
 };
 
-window.key=n=>{
-  if(!selectedEmployee)return toast("Selecciona un empleado");
-  if(pin.length<6){pin+=n;updatePin()}
+window.pressPin=n=>{
+
+  if(!selectedEmployee){
+    toast("Selecciona quién está cobrando");
+    return;
+  }
+
+  if(pin.length<6){
+    pin+=String(n);
+    updatePin();
+  }
+
 };
 
-window.clearPin=()=>{
-  pin=pin.slice(0,-1);updatePin();
+window.backPin=()=>{
+  pin=pin.slice(0,-1);
+  updatePin();
 };
 
 function updatePin(){
-  document.getElementById("pinDots").textContent=
-    pin?pin.split("").map(()=> "●").join(" ") : "○ ○ ○ ○";
+
+  $("pinDots").textContent=
+    pin.length
+    ? Array.from(pin).map(()=> "●").join(" ")
+    : "○ ○ ○ ○";
+
 }
 
-window.login=()=>{
-  if(!selectedEmployee)return toast("Selecciona un empleado");
-  if(pin===selectedEmployee.pin){
+/*
+  Login visual.
+  El PIN se sustituirá por la autenticación segura
+  asociada a Firebase antes de producción.
+*/
+
+window.login=async()=>{
+
+  if(!selectedEmployee)
+    return toast("Selecciona un empleado");
+
+  if(pin===String(selectedEmployee.pin)){
+
     currentEmployee=selectedEmployee;
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("app").classList.remove("hidden");
-    document.getElementById("currentEmployee").textContent=currentEmployee.name;
-    go("home");
+
+    $("login").classList.add("hidden");
+    $("app").classList.remove("hidden");
+
+    $("currentEmployee").textContent=currentEmployee.name;
+
+    page="home";
+    render();
+
   }else{
-    pin="";updatePin();toast("PIN incorrecto");
+
+    pin="";
+    updatePin();
+    toast("PIN incorrecto");
+
   }
+
 };
 
-/* ================= NAVEGACIÓN ================= */
+window.switchEmployee=()=>{
+
+  currentEmployee=null;
+  selectedEmployee=null;
+  pin="";
+  updatePin();
+
+  $("app").classList.add("hidden");
+  $("login").classList.remove("hidden");
+
+  renderEmployees();
+
+};
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
 
 window.go=(p,button)=>{
+
   page=p;
-  document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+
+  document.querySelectorAll(".nav")
+    .forEach(x=>x.classList.remove("active"));
+
   if(button)button.classList.add("active");
+
   render();
+
 };
 
 function render(){
+
   if(page==="home")home();
   if(page==="sale")salePage();
   if(page==="inventory")inventoryPage();
   if(page==="cash")cashPage();
   if(page==="reports")reportsPage();
+  if(page==="employees")employeesPage();
+  if(page==="settings")settingsPage();
+
 }
 
-/* ================= INICIO ================= */
+/* =========================================================
+   HOME
+========================================================= */
 
 function home(){
-  const sales=data.sales.filter(x=>x.date===today()&&!x.cancelled);
-  const total=sales.reduce((a,b)=>a+b.total,0);
-  const grams=sales.reduce((a,b)=>a+b.grams,0);
 
-  document.getElementById("content").innerHTML=`
+  const todaySales=sales.filter(
+    s=>s.date===today()&&!s.cancelled
+  );
+
+  const total=todaySales.reduce(
+    (a,b)=>a+Number(b.total||0),0
+  );
+
+  const grams=todaySales.reduce(
+    (a,b)=>a+Number(b.grams||0),0
+  );
+
+  $("content").innerHTML=`
+
     <h1>Hola, ${currentEmployee.name} 👋</h1>
     <p class="subtitle">¿Qué quieres hacer hoy?</p>
 
     <div class="stats">
-      <div class="stat"><span>Ventas hoy</span><strong>${money(total)}</strong></div>
-      <div class="stat"><span>Tickets</span><strong>${sales.length}</strong></div>
-      <div class="stat"><span>Gramos</span><strong>${grams} g</strong></div>
-      <div class="stat"><span>Empleado</span><strong>${currentEmployee.name}</strong></div>
+
+      <div class="stat">
+        <span>Ventas hoy</span>
+        <strong>${money(total)}</strong>
+      </div>
+
+      <div class="stat">
+        <span>Tickets</span>
+        <strong>${todaySales.length}</strong>
+      </div>
+
+      <div class="stat">
+        <span>Gramos</span>
+        <strong>${grams} g</strong>
+      </div>
+
+      <div class="stat">
+        <span>Estado</span>
+        <strong>${navigator.onLine?"Online":"Offline"}</strong>
+      </div>
+
     </div>
 
     <div class="grid">
+
       <button class="card menu-card" onclick="go('sale')">
-        <div class="icon">🧾</div><b>Nueva venta</b><span>Cobrar por gramos</span>
+        <div class="icon">🧾</div>
+        <b>Nueva venta</b>
+        <span>Cobrar por gramos</span>
       </button>
+
       <button class="card menu-card" onclick="go('inventory')">
-        <div class="icon">📦</div><b>Inventario</b><span>Existencias físicas</span>
+        <div class="icon">📦</div>
+        <b>Inventario</b>
+        <span>Existencias físicas</span>
       </button>
+
       <button class="card menu-card" onclick="go('cash')">
-        <div class="icon">💵</div><b>Caja</b><span>Corte del día</span>
+        <div class="icon">💵</div>
+        <b>Caja</b>
+        <span>Corte del día</span>
       </button>
+
       <button class="card menu-card" onclick="go('reports')">
-        <div class="icon">📊</div><b>Reportes</b><span>Historial y estadísticas</span>
+        <div class="icon">📊</div>
+        <b>Reportes</b>
+        <span>Historial de ventas</span>
       </button>
-      <button class="card menu-card" onclick="employeesPage()">
-        <div class="icon">👥</div><b>Empleados</b><span>Usuarios y permisos</span>
+
+      ${isOwner()?`
+
+      <button class="card menu-card" onclick="go('employees')">
+        <div class="icon">👥</div>
+        <b>Empleados</b>
+        <span>Usuarios y permisos</span>
       </button>
-      <button class="card menu-card" onclick="settingsPage()">
-        <div class="icon">⚙️</div><b>Configuración</b><span>Precio y negocio</span>
+
+      <button class="card menu-card" onclick="go('settings')">
+        <div class="icon">⚙️</div>
+        <b>Configuración</b>
+        <span>Solo Owner</span>
       </button>
+
+      `:""}
+
     </div>
   `;
+
 }
 
-/* ================= VENTA ================= */
+/* =========================================================
+   VENTA
+========================================================= */
 
 function salePage(){
+
   const grams=Number(sale.grams)||0;
-  const total=grams*(Number(data.settings.price100)||0)/100;
+  const total=grams*Number(settings.pricePerGram||0);
 
-  document.getElementById("content").innerHTML=`
-    <h1>Nueva venta</h1>
-    <p class="subtitle">Todo Nüvy se cobra por peso.</p>
+  let paymentArea="";
 
-    <div class="card">
-      <label>Peso</label>
-      <input id="gramsInput" type="number" inputmode="decimal"
-        placeholder="Ej. 213" value="${sale.grams}"
-        oninput="sale.grams=this.value;updateSaleTotal()">
+  if(sale.payment==="Efectivo"){
 
-      <div class="weight"><span id="weightDisplay">${grams}</span> g</div>
+    const received=Number(sale.received)||0;
+    const change=received-total;
 
-      <div class="total" id="saleTotal">${money(total)}</div>
+    paymentArea=`
 
-      <label>Método de pago</label>
-      <div class="payment-grid">
-        ${["Efectivo","Tarjeta","Apple Pay"].map(p=>`
-          <button class="pay ${sale.payment===p?"active":""}"
-            onclick="setPayment('${p}')">
-            ${p==="Efectivo"?"💵":p==="Tarjeta"?"💳":""}<br>${p}
-          </button>`).join("")}
+      <label>¿Cuánto entrega el cliente?</label>
+
+      <input
+        id="cashReceived"
+        type="number"
+        inputmode="decimal"
+        step="0.01"
+        placeholder="${total.toFixed(2)}"
+        value="${sale.received}"
+        oninput="updateReceived(this.value)"
+      >
+
+      ${received>0?`
+
+      <div class="change-box">
+
+        <div>
+          ${change>=0
+            ?"Cambio a devolver"
+            :"Faltan por pagar"}
+        </div>
+
+        <strong>
+          ${money(Math.abs(change))}
+        </strong>
+
       </div>
 
+      `:""}
+
+    `;
+
+  }
+
+  $("content").innerHTML=`
+
+    <h1>Nueva venta</h1>
+    <p class="subtitle">
+      La venta se calcula exclusivamente por gramos.
+    </p>
+
+    <div class="card">
+
+      <label>Peso en gramos</label>
+
+      <input
+        id="gramsInput"
+        type="number"
+        inputmode="decimal"
+        step="0.01"
+        placeholder="Ej. 213"
+        value="${sale.grams}"
+      >
+
+      <div class="weight">
+        <span id="weightDisplay">${grams}</span> g
+      </div>
+
+      <div class="total" id="saleTotal">
+        ${money(total)}
+      </div>
+
+      <div class="row">
+        <span style="color:#8c858c;font-size:12px">
+          Precio por gramo
+        </span>
+        <b>${money(settings.pricePerGram)}</b>
+      </div>
+
+      <label>Método de pago</label>
+
+      <div class="payment-grid">
+
+        ${["Efectivo","Tarjeta","Apple Pay"].map(p=>`
+
+          <button
+            class="pay ${sale.payment===p?"active":""}"
+            onclick="setPayment('${p}')">
+
+            ${p==="Efectivo"?"💵":p==="Tarjeta"?"💳":""}
+
+            <br>${p}
+
+          </button>
+
+        `).join("")}
+
+      </div>
+
+      ${paymentArea}
+
       <br>
-      <button class="primary" onclick="finishSale()">COBRAR ${money(total)}</button>
+
+      <button class="primary" onclick="chargeSale()">
+        COBRAR ${money(total)}
+      </button>
+
     </div>
 
     <div class="card" style="margin-top:14px">
+
       <div class="row">
-        <span>Precio configurado</span>
-        <b>${money(data.settings.price100)} / 100 g</b>
+
+        <span style="font-size:12px;color:#8c858c">
+          Estado
+        </span>
+
+        <span class="badge">
+          Venta pendiente
+        </span>
+
       </div>
+
+      <p style="font-size:12px;color:#8c858c">
+        Puedes modificar el peso y el método de pago
+        mientras la venta no haya sido cobrada.
+      </p>
+
     </div>
+
   `;
+
+  const input=$("gramsInput");
+
+  input.addEventListener("input",()=>{
+    sale.grams=input.value;
+    updateSaleDisplay();
+  });
+
+}
+
+function updateSaleDisplay(){
+
+  const grams=Number(sale.grams)||0;
+  const total=grams*Number(settings.pricePerGram||0);
+
+  if($("weightDisplay"))
+    $("weightDisplay").textContent=grams;
+
+  if($("saleTotal"))
+    $("saleTotal").textContent=money(total);
+
 }
 
 window.setPayment=p=>{
-  sale.payment=p;render();
+
+  sale.payment=p;
+
+  if(p!=="Efectivo")
+    sale.received="";
+
+  salePage();
+
 };
 
-window.updateSaleTotal=()=>{
-  const g=Number(document.getElementById("gramsInput").value)||0;
-  sale.grams=g;
-  document.getElementById("weightDisplay").textContent=g;
-  document.getElementById("saleTotal").textContent=
-    money(g*data.settings.price100/100);
+window.updateReceived=value=>{
+
+  sale.received=value;
+
+  const total=(Number(sale.grams)||0)*settings.pricePerGram;
+
+  const received=Number(value)||0;
+  const change=received-total;
+
+  /*
+    Actualización visual sin reconstruir toda la pantalla.
+  */
+
+  const box=document.querySelector(".change-box");
+
+  if(box){
+
+    box.innerHTML=`
+
+      <div>
+        ${change>=0
+          ?"Cambio a devolver"
+          :"Faltan por pagar"}
+      </div>
+
+      <strong>${money(Math.abs(change))}</strong>
+
+    `;
+
+  }
+
 };
 
-window.finishSale=()=>{
-  const grams=Number(sale.grams);
-  if(!grams||grams<=0)return toast("Introduce el peso");
+window.chargeSale=async()=>{
 
-  const total=grams*data.settings.price100/100;
+  const grams=Number(sale.grams)||0;
 
-  data.sales.push({
-    id:"NV-"+Date.now(),
+  if(grams<=0)
+    return toast("Introduce el peso");
+
+  const total=grams*settings.pricePerGram;
+
+  if(sale.payment==="Efectivo"){
+
+    const received=Number(sale.received)||0;
+
+    if(received<total){
+      return toast("El efectivo no alcanza para cobrar");
+    }
+
+  }
+
+  const saleId=uid("NV");
+
+  const newSale={
+
+    id:saleId,
     date:today(),
-    time:new Date().toLocaleTimeString("es-MX",{hour:"2-digit",minute:"2-digit"}),
-    grams,total,
-    payment:sale.payment,
-    employee:currentEmployee.name,
-    employeeId:currentEmployee.id,
-    cancelled:false
-  });
+    time:timeNow(),
 
-  save();
-  toast("Venta registrada ✓");
-  sale={grams:"",payment:"Efectivo"};
+    grams,
+    pricePerGram:settings.pricePerGram,
+    total,
+
+    payment:sale.payment,
+    received:
+      sale.payment==="Efectivo"
+      ?Number(sale.received)
+      :total,
+
+    change:
+      sale.payment==="Efectivo"
+      ?Number(sale.received)-total
+      :0,
+
+    employeeId:currentEmployee.id,
+    employee:currentEmployee.name,
+
+    status:"PAID",
+    cancelled:false,
+
+    createdAt:new Date().toISOString()
+
+  };
+
+  sales.unshift(newSale);
+
+  await saveSale(newSale);
+
+  sale={
+    grams:"",
+    payment:"Efectivo",
+    received:"",
+    status:"draft"
+  };
+
+  toast("Venta cobrada ✓");
+
   setTimeout(()=>go("home"),400);
+
 };
 
-/* ================= INVENTARIO ================= */
+/* =========================================================
+   INVENTARIO
+========================================================= */
 
 function inventoryPage(){
-  document.getElementById("content").innerHTML=`
+
+  $("content").innerHTML=`
+
     <div class="row">
-      <div><h1>Inventario</h1><p class="subtitle">Control físico de existencias.</p></div>
-      <button class="secondary" onclick="inventoryModal()">＋ Agregar</button>
+
+      <div>
+        <h1>Inventario</h1>
+        <p class="subtitle">
+          Control físico de existencias.
+        </p>
+      </div>
+
+      ${isOwner()
+        ?`<button class="secondary" onclick="inventoryModal()">＋ Agregar</button>`
+        :""}
+
     </div>
 
     <div class="card">
-      ${data.inventory.length?`
+
+      ${inventory.length?`
+
       <table class="table">
-        <thead><tr><th>Artículo</th><th>Unidad</th><th>Inicio</th><th>Actual</th></tr></thead>
-        <tbody>
-        ${data.inventory.map((x,i)=>`
+
+        <thead>
           <tr>
-            <td><b>${x.name}</b></td>
-            <td>${x.unit}</td>
-            <td>${x.start}</td>
-            <td><b>${x.current}</b></td>
-          </tr>`).join("")}
+            <th>Artículo</th>
+            <th>Unidad</th>
+            <th>Inicio</th>
+            <th>Actual</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          ${inventory.map(x=>`
+
+            <tr>
+
+              <td><b>${x.name}</b></td>
+              <td>${x.unit}</td>
+              <td>${x.start}</td>
+              <td><b>${x.current}</b></td>
+
+            </tr>
+
+          `).join("")}
+
         </tbody>
-      </table>`:`<div class="empty">Todavía no hay artículos.<br>Agrega tu primer producto.</div>`}
+
+      </table>
+
+      `:`
+
+      <div class="empty">
+        No hay artículos registrados.
+      </div>
+
+      `}
+
     </div>
+
   `;
+
 }
 
 window.inventoryModal=()=>{
-  document.getElementById("modalBox").innerHTML=`
+
+  if(!requireOwner())return;
+
+  $("modalBox").innerHTML=`
+
     <h2>Agregar inventario</h2>
+
     <label>Nombre</label>
     <input id="invName" placeholder="Ej. Galletas Oreo">
+
     <label>Unidad</label>
+
     <select id="invUnit">
-      <option>Caja</option><option>Pieza</option><option>Batida</option>
-      <option>Bolsa</option><option>Botella</option><option>Kg</option>
+      <option>Caja</option>
+      <option>Pieza</option>
+      <option>Batida</option>
+      <option>Bolsa</option>
+      <option>Botella</option>
+      <option>Kg</option>
       <option>Litro</option>
     </select>
+
     <label>Existencia inicial</label>
-    <input id="invStart" type="number" inputmode="decimal">
+
+    <input
+      id="invStart"
+      type="number"
+      inputmode="decimal"
+      min="0"
+    >
+
     <br><br>
-    <button class="primary" onclick="addInventory()">Guardar</button>
+
+    <button class="primary" onclick="addInventory()">
+      GUARDAR
+    </button>
+
   `;
+
   openModal();
+
 };
 
-window.addInventory=()=>{
-  const name=document.getElementById("invName").value.trim();
-  const unit=document.getElementById("invUnit").value;
-  const start=Number(document.getElementById("invStart").value)||0;
-  if(!name)return toast("Escribe el nombre");
-  data.inventory.push({id:Date.now(),name,unit,start,current:start});
-  save();closeModal();inventoryPage();toast("Inventario agregado");
+window.addInventory=async()=>{
+
+  if(!requireOwner())return;
+
+  const name=$("invName").value.trim();
+  const unit=$("invUnit").value;
+  const start=Number($("invStart").value)||0;
+
+  if(!name)
+    return toast("Escribe el nombre");
+
+  const item={
+    id:uid("INV"),
+    name,
+    unit,
+    start,
+    current:start
+  };
+
+  inventory.push(item);
+
+  await saveInventoryItem(item);
+
+  closeModal();
+  inventoryPage();
+
+  toast("Inventario agregado ✓");
+
 };
 
-/* ================= CAJA ================= */
+/* =========================================================
+   CAJA
+========================================================= */
 
 function cashPage(){
-  const sales=data.sales.filter(x=>x.date===today()&&!x.cancelled);
-  const cash=sales.filter(x=>x.payment==="Efectivo").reduce((a,b)=>a+b.total,0);
-  const card=sales.filter(x=>x.payment==="Tarjeta").reduce((a,b)=>a+b.total,0);
-  const apple=sales.filter(x=>x.payment==="Apple Pay").reduce((a,b)=>a+b.total,0);
+
+  const todaySales=sales.filter(
+    s=>s.date===today()&&!s.cancelled
+  );
+
+  const cash=todaySales
+    .filter(s=>s.payment==="Efectivo")
+    .reduce((a,b)=>a+Number(b.total||0),0);
+
+  const card=todaySales
+    .filter(s=>s.payment==="Tarjeta")
+    .reduce((a,b)=>a+Number(b.total||0),0);
+
+  const apple=todaySales
+    .filter(s=>s.payment==="Apple Pay")
+    .reduce((a,b)=>a+Number(b.total||0),0);
+
   const total=cash+card+apple;
 
-  document.getElementById("content").innerHTML=`
+  $("content").innerHTML=`
+
     <h1>Caja</h1>
-    <p class="subtitle">Corte del día ${today()}</p>
+
+    <p class="subtitle">
+      Corte del día ${today()}
+    </p>
 
     <div class="stats">
-      <div class="stat"><span>Total</span><strong>${money(total)}</strong></div>
-      <div class="stat"><span>Efectivo</span><strong>${money(cash)}</strong></div>
-      <div class="stat"><span>Tarjeta</span><strong>${money(card)}</strong></div>
-      <div class="stat"><span>Apple Pay</span><strong>${money(apple)}</strong></div>
+
+      <div class="stat">
+        <span>Total</span>
+        <strong>${money(total)}</strong>
+      </div>
+
+      <div class="stat">
+        <span>Efectivo esperado</span>
+        <strong>${money(cash)}</strong>
+      </div>
+
+      <div class="stat">
+        <span>Tarjeta</span>
+        <strong>${money(card)}</strong>
+      </div>
+
+      <div class="stat">
+        <span>Apple Pay</span>
+        <strong>${money(apple)}</strong>
+      </div>
+
     </div>
 
     <div class="card">
+
       <h2>Corte de caja</h2>
-      <p class="subtitle">Cuenta físicamente el efectivo y compáralo con lo esperado.</p>
-      <label>Efectivo contado</label>
-      <input id="cashReal" type="number" inputmode="decimal" placeholder="0.00">
+
+      <p class="subtitle">
+        ${todaySales.length
+          ?`${todaySales.length} venta(s) registradas.`
+          :"Todavía no hay ventas. El corte comenzará en $0.00."}
+      </p>
+
+      <label>Efectivo contado físicamente</label>
+
+      <input
+        id="cashReal"
+        type="number"
+        inputmode="decimal"
+        step="0.01"
+        placeholder="0.00"
+      >
+
       <br><br>
-      <button class="primary" onclick="closeCash(${cash})">CERRAR CAJA</button>
+
+      <button class="primary" onclick="closeCash(${cash})">
+        CERRAR CAJA
+      </button>
+
     </div>
+
   `;
+
 }
 
-window.closeCash=expected=>{
-  const real=Number(document.getElementById("cashReal").value);
-  if(isNaN(real))return toast("Introduce el efectivo contado");
+window.closeCash=async expected=>{
 
-  data.cashClosings.push({
-    date:today(),expected,real,difference:real-expected,
-    employee:currentEmployee.name,time:new Date().toLocaleTimeString()
-  });
+  if(!currentEmployee)
+    return toast("No hay empleado activo");
 
-  save();toast("Corte guardado ✓");
+  const real=Number($("cashReal").value);
+
+  if(!Number.isFinite(real)||real<0)
+    return toast("Introduce el efectivo contado");
+
+  const closing={
+    id:uid("CORTE"),
+    date:today(),
+    time:timeNow(),
+    expected:Number(expected),
+    real,
+    difference:real-Number(expected),
+    employeeId:currentEmployee.id,
+    employee:currentEmployee.name
+  };
+
+  cashClosings.unshift(closing);
+
+  try{
+
+    await setDoc(
+      doc(db,"cashClosings",closing.id),
+      closing
+    );
+
+  }catch(e){
+
+    console.error(e);
+    toast("Corte guardado localmente");
+
+  }
+
+  toast(
+    closing.difference===0
+      ?"Corte correcto ✓"
+      :"Corte guardado"
+  );
+
 };
 
-/* ================= REPORTES ================= */
+/* =========================================================
+   REPORTES
+========================================================= */
 
 function reportsPage(){
-  const sales=[...data.sales].reverse();
 
-  document.getElementById("content").innerHTML=`
+  const list=[...sales];
+
+  $("content").innerHTML=`
+
     <h1>Reportes</h1>
-    <p class="subtitle">Historial completo de Nüvy.</p>
+
+    <p class="subtitle">
+      Historial de ventas.
+    </p>
 
     <div class="card">
-      <h2>Ventas</h2>
-      ${sales.length?`
+
+      ${list.length?`
+
       <table class="table">
+
         <thead>
-          <tr><th>Fecha</th><th>Gramos</th><th>Total</th><th>Pago</th><th>Empleado</th></tr>
+          <tr>
+            <th>Venta</th>
+            <th>Peso</th>
+            <th>Total</th>
+            <th>Pago</th>
+            <th>Empleado</th>
+          </tr>
         </thead>
+
         <tbody>
-        ${sales.map(x=>`
-          <tr style="${x.cancelled?"opacity:.45;text-decoration:line-through":""}">
-            <td>${x.date}<br><small>${x.time}</small></td>
-            <td>${x.grams} g</td>
-            <td>${money(x.total)}</td>
-            <td><span class="badge">${x.payment}</span></td>
-            <td>${x.employee}</td>
-          </tr>`).join("")}
+
+          ${list.map(s=>`
+
+            <tr
+              style="${
+                s.cancelled
+                ?"opacity:.45;text-decoration:line-through"
+                :""
+              }"
+            >
+
+              <td>
+                <b>${s.id}</b><br>
+                <small>${s.date} · ${s.time}</small>
+              </td>
+
+              <td>${s.grams} g</td>
+
+              <td>${money(s.total)}</td>
+
+              <td>
+                <span class="badge">${s.payment}</span>
+              </td>
+
+              <td>${s.employee}</td>
+
+            </tr>
+
+          `).join("")}
+
         </tbody>
-      </table>`:`<div class="empty">No hay ventas registradas.</div>`}
+
+      </table>
+
+      `:`
+
+      <div class="empty">
+        Todavía no hay ventas.
+      </div>
+
+      `}
+
     </div>
+
   `;
+
 }
 
-/* ================= EMPLEADOS ================= */
+/* =========================================================
+   EMPLEADOS
+========================================================= */
 
-window.employeesPage=()=>{
-  document.getElementById("content").innerHTML=`
+function employeesPage(){
+
+  if(!requireOwner())return;
+
+  $("content").innerHTML=`
+
     <div class="row">
-      <div><h1>Empleados</h1><p class="subtitle">Usuarios y permisos.</p></div>
-      <button class="secondary" onclick="employeeModal()">＋ Agregar</button>
+
+      <div>
+        <h1>Empleados</h1>
+        <p class="subtitle">
+          Solo Owner puede administrar empleados.
+        </p>
+      </div>
+
+      <button class="secondary" onclick="employeeModal()">
+        ＋ Agregar
+      </button>
+
     </div>
 
     <div class="grid">
-      ${data.employees.map(e=>`
+
+      ${employees.map(e=>`
+
         <div class="card">
+
           <div class="row">
+
             <b>${e.name}</b>
-            <span class="badge">${e.role}</span>
+
+            <span class="badge">
+              ${e.role}
+            </span>
+
           </div>
-          <p class="subtitle">PIN configurado</p>
-          ${e.role!=="Owner"?`
-          <button class="secondary danger" onclick="deleteEmployee('${e.id}')">Eliminar</button>`
-          :`<span class="badge">Owner</span>`}
-        </div>`).join("")}
+
+          <p style="font-size:12px;color:#8c858c">
+            ${e.email||"Sin correo configurado"}
+          </p>
+
+          <span class="status">
+            ${e.active!==false?"Activo":"Desactivado"}
+          </span>
+
+          <br><br>
+
+          <button
+            class="secondary"
+            onclick="editEmployee('${e.id}')">
+            Editar
+          </button>
+
+        </div>
+
+      `).join("")}
+
     </div>
+
   `;
-};
+
+}
 
 window.employeeModal=()=>{
-  document.getElementById("modalBox").innerHTML=`
+
+  if(!requireOwner())return;
+
+  $("modalBox").innerHTML=`
+
     <h2>Nuevo empleado</h2>
+
     <label>Nombre</label>
     <input id="empName" placeholder="Nombre">
-    <label>PIN</label>
-    <input id="empPin" type="password" inputmode="numeric" maxlength="6" placeholder="4-6 números">
+
+    <label>Correo de Firebase</label>
+    <input id="empEmail" type="email" placeholder="empleado@nuvy.com">
+
+    <label>PIN de Nüvy</label>
+    <input
+      id="empPin"
+      type="password"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="4 a 6 números"
+    >
+
+    <label>Rol</label>
+
+    <select id="empRole">
+      <option value="Empleado">Empleado</option>
+      <option value="Owner">Owner</option>
+    </select>
+
     <br><br>
-    <button class="primary" onclick="addEmployee()">Crear empleado</button>
+
+    <button class="primary" onclick="addEmployee()">
+      CREAR EMPLEADO
+    </button>
+
   `;
+
   openModal();
+
 };
 
-window.addEmployee=()=>{
-  const name=document.getElementById("empName").value.trim();
-  const p=document.getElementById("empPin").value.trim();
-  if(!name||!/^\\d{4,6}$/.test(p))return toast("Nombre y PIN válido requeridos");
-  data.employees.push({
-    id:"emp"+Date.now(),name,role:"Empleado",pin:p
-  });
-  save();closeModal();employeesPage();toast("Empleado creado");
+window.addEmployee=async()=>{
+
+  if(!requireOwner())return;
+
+  const name=$("empName").value.trim();
+  const email=$("empEmail").value.trim();
+  const p=$("empPin").value.trim();
+  const role=$("empRole").value;
+
+  if(!name)
+    return toast("Falta el nombre");
+
+  if(!/^\\d{4,6}$/.test(p))
+    return toast("El PIN debe tener 4 a 6 números");
+
+  const employee={
+    id:uid("EMP"),
+    name,
+    email,
+    pin:p,
+    role,
+    active:true
+  };
+
+  employees.push(employee);
+
+  await saveEmployee(employee);
+
+  closeModal();
+  employeesPage();
+
+  toast("Empleado creado ✓");
+
 };
 
-window.deleteEmployee=id=>{
-  if(!confirm("¿Eliminar este empleado?"))return;
-  data.employees=data.employees.filter(e=>e.id!==id);
-  save();employeesPage();
+window.editEmployee=id=>{
+
+  if(!requireOwner())return;
+
+  const e=employees.find(x=>x.id===id);
+
+  if(!e)return;
+
+  $("modalBox").innerHTML=`
+
+    <h2>Editar empleado</h2>
+
+    <label>Nombre</label>
+
+    <input id="editName" value="${e.name}">
+
+    <label>Correo</label>
+
+    <input id="editEmail" value="${e.email||""}">
+
+    <label>PIN</label>
+
+    <input
+      id="editPin"
+      type="password"
+      inputmode="numeric"
+      maxlength="6"
+      value="${e.pin||""}"
+    >
+
+    <label>Rol</label>
+
+    <select id="editRole">
+
+      <option
+        value="Empleado"
+        ${e.role==="Empleado"?"selected":""}>
+        Empleado
+      </option>
+
+      <option
+        value="Owner"
+        ${e.role==="Owner"?"selected":""}>
+        Owner
+      </option>
+
+    </select>
+
+    <br><br>
+
+    <button
+      class="primary"
+      onclick="updateEmployee('${id}')">
+      GUARDAR CAMBIOS
+    </button>
+
+    <br><br>
+
+    <button
+      class="secondary danger"
+      onclick="toggleEmployee('${id}')">
+      ${e.active===false?"Activar empleado":"Desactivar empleado"}
+    </button>
+
+  `;
+
+  openModal();
+
 };
 
-/* ================= CONFIGURACIÓN ================= */
+window.updateEmployee=async id=>{
 
-window.settingsPage=()=>{
-  document.getElementById("content").innerHTML=`
+  if(!requireOwner())return;
+
+  const e=employees.find(x=>x.id===id);
+
+  if(!e)return;
+
+  const name=$("editName").value.trim();
+  const email=$("editEmail").value.trim();
+  const p=$("editPin").value.trim();
+  const role=$("editRole").value;
+
+  if(!name)
+    return toast("Falta el nombre");
+
+  if(!/^\\d{4,6}$/.test(p))
+    return toast("PIN inválido");
+
+  e.name=name;
+  e.email=email;
+  e.pin=p;
+  e.role=role;
+
+  await saveEmployee(e);
+
+  closeModal();
+  employeesPage();
+
+  toast("Empleado actualizado ✓");
+
+};
+
+window.toggleEmployee=async id=>{
+
+  if(!requireOwner())return;
+
+  const e=employees.find(x=>x.id===id);
+
+  if(!e)return;
+
+  e.active=e.active===false;
+
+  await saveEmployee(e);
+
+  closeModal();
+  employeesPage();
+
+  toast(e.active?"Empleado activado":"Empleado desactivado");
+
+};
+
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
+
+function settingsPage(){
+
+  if(!requireOwner())return;
+
+  $("content").innerHTML=`
+
     <h1>Configuración</h1>
-    <p class="subtitle">Configuración general de Nüvy.</p>
+
+    <p class="subtitle">
+      Solo Ramón e Itzel pueden modificar esto.
+    </p>
 
     <div class="card">
-      <h2>Precio</h2>
-      <label>Precio por 100 gramos</label>
-      <input id="price100" type="number" inputmode="decimal"
-        value="${data.settings.price100}">
-      <br><br>
-      <button class="primary" onclick="saveSettings()">GUARDAR</button>
+
+      <h2>Precio de venta</h2>
+
+      <label>Precio por gramo</label>
+
+      <input
+        id="priceGram"
+        type="number"
+        inputmode="decimal"
+        step="0.01"
+        min="0"
+        value="${settings.pricePerGram}"
+      >
+
+      <p style="font-size:12px;color:#8c858c">
+        Ejemplo: si el precio es $0.40 y pesan 213 g,
+        el total será $85.20.
+      </p>
+
+      <button
+        class="primary"
+        onclick="savePrice()">
+        GUARDAR PRECIO
+      </button>
+
     </div>
 
-    <div class="card" style="margin-top:14px">
-      <h2>Sesión</h2>
-      <button class="secondary" onclick="logout()">Cerrar sesión</button>
-    </div>
   `;
+
+}
+
+window.savePrice=async()=>{
+
+  if(!requireOwner())return;
+
+  const value=Number($("priceGram").value);
+
+  if(!Number.isFinite(value)||value<=0)
+    return toast("Precio inválido");
+
+  settings.pricePerGram=value;
+
+  await saveSettings();
+
+  toast("Precio actualizado ✓");
+
 };
 
-window.saveSettings=()=>{
-  const p=Number(document.getElementById("price100").value);
-  if(p<=0)return toast("Precio inválido");
-  data.settings.price100=p;
-  save();toast("Configuración guardada ✓");
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(){
+  $("modal").classList.add("show");
+}
+
+window.closeModal=()=>{
+  $("modal").classList.remove("show");
 };
 
-window.logout=()=>{
-  currentEmployee=null;selectedEmployee=null;pin="";
-  document.getElementById("app").classList.add("hidden");
-  document.getElementById("login").classList.remove("hidden");
-  renderEmployees();updatePin();
-};
+/* =========================================================
+   ONLINE / OFFLINE
+========================================================= */
 
-/* ================= MODAL ================= */
+window.addEventListener("online",()=>{
+  toast("Internet conectado ✓");
+});
 
-function openModal(){document.getElementById("modal").classList.add("show")}
-window.closeModal=()=>document.getElementById("modal").classList.remove("show");
+window.addEventListener("offline",()=>{
+  toast("Sin internet · Nüvy continúa funcionando");
+});
 
-/* ================= ARRANQUE ================= */
+/* =========================================================
+   INICIO
+========================================================= */
 
-renderEmployees();
-updatePin();
+(async()=>{
+
+  await loadData();
+
+  /*
+    Precio inicial:
+    $0.40 por gramo.
+    El Owner podrá cambiarlo.
+  */
+
+  renderEmployees();
+
+})();
 
 </script>
 </body>

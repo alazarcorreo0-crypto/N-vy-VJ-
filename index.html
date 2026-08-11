@@ -7,13 +7,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>NÜVY · Villa Juárez</title>
-
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;touch-action:manipulation}
 body{background:#fff8fb;color:#29252a;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
-button,input,select{font:inherit;touch-action:manipulation}
-button{cursor:pointer;border:0}
+button,input,select{font:inherit;touch-action:manipulation}button{cursor:pointer;border:0}
 input,select{width:100%;padding:15px;border:1px solid #eee5ea;border-radius:15px;background:#fff;color:#29252a;outline:0}
 input:focus,select:focus{border-color:#c978a5}
 .app{min-height:100vh;padding-bottom:82px}.hidden{display:none!important}
@@ -27,12 +25,15 @@ main{max-width:1100px;margin:auto;padding:24px 17px}h1{font-size:30px;margin:4px
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-bottom:20px}@media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}}
 .stat{padding:17px;border-radius:19px;background:#f8e7f0}.stat span{font-size:11px;color:#8c858c}.stat strong{display:block;font-size:21px;margin-top:5px}
 .row{display:flex;justify-content:space-between;align-items:center;gap:10px}label{display:block;font-size:12px;color:#8c858c;margin:14px 0 7px}
-.primary{width:100%;padding:17px;border-radius:17px;background:#c978a5;color:white;font-weight:800;font-size:17px}.secondary{padding:12px 15px;border-radius:14px;background:#f8e7f0;color:#a95f8d;font-weight:700}.danger{background:#fde8e9;color:#c95660}
-.weight{text-align:center;font-size:54px;font-weight:900;padding:22px;background:#f8e7f0;border-radius:24px;margin:16px 0}.total{text-align:center;font-size:39px;font-weight:900;margin:18px 0}
+.primary{width:100%;padding:17px;border-radius:17px;background:#c978a5;color:white;font-weight:800;font-size:17px}
+.secondary{padding:12px 15px;border-radius:14px;background:#f8e7f0;color:#a95f8d;font-weight:700}.danger{background:#fde8e9;color:#c95660}
+.weight{text-align:center;font-size:54px;font-weight:900;padding:22px;background:#f8e7f0;border-radius:24px;margin:16px 0}
+.total{text-align:center;font-size:39px;font-weight:900;margin:18px 0}
 .payment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.pay{padding:16px 5px;border-radius:16px;background:white;border:1px solid #eee5ea;font-weight:700}.pay.active{border:2px solid #c978a5;background:#f8e7f0;color:#a95f8d}
 .change-box{margin-top:14px;padding:18px;border-radius:18px;background:#f1f8f5}.change-box strong{font-size:27px;color:#43856b}
 .table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px 6px;border-bottom:1px solid #eee5ea;text-align:left;font-size:12px}.table th{color:#8c858c}
-.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#f8e7f0;color:#a95f8d;font-size:10px;font-weight:700}.empty{text-align:center;padding:32px;color:#8c858c}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#f8e7f0;color:#a95f8d;font-size:10px;font-weight:700}
+.empty{text-align:center;padding:32px;color:#8c858c}
 .bottom{position:fixed;left:0;right:0;bottom:0;height:73px;background:white;border-top:1px solid #eee5ea;z-index:30;display:flex;justify-content:center;padding:7px;gap:4px}
 .nav{flex:1;max-width:135px;background:none;border-radius:17px;color:#8c858c;font-size:10px}.nav div{font-size:21px}.nav.active{background:#f8e7f0;color:#a95f8d;font-weight:700}
 .pin-screen{position:fixed;inset:0;z-index:100;background:#fff8fb;display:flex;align-items:center;justify-content:center;padding:20px;touch-action:manipulation;overflow:auto}
@@ -44,9 +45,11 @@ main{max-width:1100px;margin:auto;padding:24px 17px}h1{font-size:30px;margin:4px
 .status{font-size:10px;padding:5px 9px;border-radius:20px;background:#eef7f2;color:#43856b}
 .owner-login{margin:18px 0;padding:18px;background:#fff;border:1px solid #eee5ea;border-radius:22px;text-align:left}.owner-login h3{margin:0 0 5px}
 .firebase-status{padding:10px;border-radius:18px;background:#eef7f2;color:#43856b;font-size:13px;margin:16px 0}.firebase-status.error{background:#fde8e9;color:#c95660}
+.month-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}.month-nav b{font-size:14px}
+.day-card{margin-bottom:10px}.day-card summary{cursor:pointer;list-style:none}.day-card summary::-webkit-details-marker{display:none}
+.small-note{font-size:11px;color:#8c858c}.locked{opacity:.65}
 </style>
 </head>
-
 <body>
 
 <div id="login" class="pin-screen">
@@ -54,13 +57,10 @@ main{max-width:1100px;margin:auto;padding:24px 17px}h1{font-size:30px;margin:4px
     <div class="logo">N</div>
     <div class="brand">NÜVY</div>
     <p class="subtitle">Villa Juárez</p>
-
     <div id="firebaseStatus" class="firebase-status">☁️ Conectando con Firebase…</div>
 
     <div id="employeeSelect" class="employee-select"></div>
-
     <div id="loginMessage" class="subtitle" style="margin:10px 0"></div>
-
     <div id="pinArea">
       <div id="pinDots" class="pin-dots">○ ○ ○ ○</div>
       <div class="keypad">
@@ -73,13 +73,11 @@ main{max-width:1100px;margin:auto;padding:24px 17px}h1{font-size:30px;margin:4px
 
     <div class="owner-login">
       <h3>Acceso Owner</h3>
-      <div style="font-size:12px;color:#8c858c;margin-bottom:12px">
-        Ramón o Itzel: usa el correo y contraseña que ya tienes en Firebase Authentication.
-      </div>
-      <label>Correo</label>
-      <input id="ownerEmail" type="email" autocomplete="username" placeholder="owner@nuvy.com.mx">
+      <div style="font-size:12px;color:#8c858c;margin-bottom:12px">Entra con tu correo y contraseña de Owner.</div>
+      <label>Correo electrónico</label>
+      <input id="ownerEmail" type="email" autocomplete="username" placeholder="Correo electrónico">
       <label>Contraseña</label>
-      <input id="ownerPassword" type="password" autocomplete="current-password" placeholder="Contraseña de Firebase">
+      <input id="ownerPassword" type="password" autocomplete="current-password" placeholder="Contraseña">
       <br><br>
       <button class="primary" onclick="ownerLogin()">ENTRAR COMO OWNER</button>
     </div>
@@ -89,7 +87,7 @@ main{max-width:1100px;margin:auto;padding:24px 17px}h1{font-size:30px;margin:4px
 <div id="app" class="app hidden">
 <header>
   <div><div class="brand">NÜVY</div><small>VILLA JUÁREZ</small></div>
-  <button class="employee-button" onclick="switchEmployee()"><span>Cobrando ahora</span><b id="currentEmployee">—</b></button>
+  <button class="employee-button" onclick="switchEmployee()"><span>Cobrando ahora · cambiar</span><b id="currentEmployee">—</b></button>
 </header>
 <main id="content"></main>
 <nav class="bottom">
@@ -106,7 +104,7 @@ main{max-width:1100px;margin:auto;padding:24px 17px}h1{font-size:30px;margin:4px
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import {getFirestore,collection,doc,setDoc,getDoc,getDocs,updateDoc,deleteDoc,query,orderBy,serverTimestamp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import {getFirestore,collection,doc,setDoc,getDoc,getDocs,updateDoc,query,orderBy,serverTimestamp,initializeFirestore,persistentLocalCache,persistentMultipleTabManager} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 import {getAuth,signInWithEmailAndPassword,signInAnonymously,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 const firebaseConfig={
@@ -117,14 +115,18 @@ const firebaseConfig={
   messagingSenderId:"392959821616",
   appId:"1:392959821616:web:89f2650762fdfecccd6af5"
 };
-
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
-const db=getFirestore(app);
+let db;
+try{
+  db=initializeFirestore(app,{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()})});
+}catch{
+  db=getFirestore(app);
+}
 
 let employees=[],sales=[],inventory=[],cashClosings=[];
-let currentEmployee=null,selectedEmployee=null,pin="",page="home";
-let ownerMode=false;
+let currentEmployee=null,selectedEmployee=null,pin="",page="home",ownerMode=false;
+let reportMonth=null;
 let settings={pricePerGram:0.40,businessName:"Nüvy Villa Juárez"};
 let sale={grams:"",payment:"Efectivo",received:""};
 
@@ -137,22 +139,17 @@ const uid=p=>"NV-"+p+"-"+Date.now()+"-"+Math.random().toString(36).slice(2,7);
 function toast(m){$("toast").textContent=m;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200)}
 function isOwner(){return ownerMode&&currentEmployee?.role==="Owner"}
 function requireOwner(){if(!isOwner()){toast("Solo Owner puede hacer esto");return false}return true}
-
 async function hashPin(v){
   const data=new TextEncoder().encode(v);
   const hash=await crypto.subtle.digest("SHA-256",data);
   return [...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,"0")).join("");
 }
-
-function setFirebaseStatus(text,error=false){
-  $("firebaseStatus").textContent=text;
-  $("firebaseStatus").className="firebase-status"+(error?" error":"");
-}
+function setFirebaseStatus(text,error=false){$("firebaseStatus").textContent=text;$("firebaseStatus").className="firebase-status"+(error?" error":"")}
 
 async function loadCore(){
   try{
     const s=await getDoc(doc(db,"settings","main"));
-    if(s.exists()) settings={...settings,...s.data()};
+    if(s.exists())settings={...settings,...s.data()};
     else await setDoc(doc(db,"settings","main"),settings);
 
     const e=await getDocs(collection(db,"employees"));
@@ -161,9 +158,7 @@ async function loadCore(){
     try{
       const q=await getDocs(query(collection(db,"sales"),orderBy("createdAt","desc")));
       sales=q.docs.map(d=>({id:d.id,...d.data()}));
-    }catch{
-      sales=[];
-    }
+    }catch{sales=[]}
 
     try{
       const i=await getDocs(collection(db,"inventory"));
@@ -175,7 +170,7 @@ async function loadCore(){
       cashClosings=c.docs.map(d=>({id:d.id,...d.data()}));
     }catch{cashClosings=[]}
 
-    setFirebaseStatus("☁️ Firebase conectado");
+    setFirebaseStatus(navigator.onLine?"☁️ Firebase conectado":"📴 Sin internet · datos locales");
     renderEmployees();
   }catch(err){
     console.error(err);
@@ -186,6 +181,25 @@ async function loadCore(){
   }
 }
 
+async function refreshSales(){
+  try{
+    const q=await getDocs(query(collection(db,"sales"),orderBy("createdAt","desc")));
+    sales=q.docs.map(d=>({id:d.id,...d.data()}));
+  }catch{}
+}
+async function refreshInventory(){
+  try{
+    const i=await getDocs(collection(db,"inventory"));
+    inventory=i.docs.map(d=>({id:d.id,...d.data()}));
+  }catch{}
+}
+async function refreshCash(){
+  try{
+    const c=await getDocs(collection(db,"cashClosings"));
+    cashClosings=c.docs.map(d=>({id:d.id,...d.data()}));
+  }catch{}
+}
+
 function renderEmployees(){
   const active=employees.filter(e=>e.active!==false);
   $("employeeSelect").innerHTML=active.length?active.map(e=>`
@@ -193,7 +207,6 @@ function renderEmployees(){
       <b>${e.name}</b><br><small>${e.role}</small>
     </button>`).join(""):`<div class="empty" style="grid-column:1/-1">No hay empleados configurados.<br><small>Entra como Owner para crearlos.</small></div>`;
 }
-
 window.selectEmployee=id=>{
   selectedEmployee=employees.find(e=>e.id===id);
   pin="";
@@ -201,7 +214,6 @@ window.selectEmployee=id=>{
   renderEmployees();
   $("loginMessage").textContent=`Seleccionado: ${selectedEmployee?.name||""}. Ahora introduce su PIN.`;
 };
-
 window.pressPin=n=>{
   if(!selectedEmployee)return toast("Primero selecciona quién está cobrando");
   if(pin.length<6){pin+=String(n);updatePin()}
@@ -212,69 +224,54 @@ function updatePin(){$("pinDots").textContent=pin.length?Array.from(pin).map(()=
 window.loginEmployee=async()=>{
   if(!selectedEmployee)return toast("Primero selecciona quién está cobrando");
   if(!/^\d{4,6}$/.test(pin))return toast("PIN de 4 a 6 números");
-
+  if(!selectedEmployee.pinHash)return toast("Este empleado necesita que Owner le configure un PIN");
   try{
-    const expected=selectedEmployee.pinHash;
-    if(!expected)return toast("Este empleado necesita que Owner le configure un PIN");
     const actual=await hashPin(pin);
-    if(actual!==expected){pin="";updatePin();return toast("PIN incorrecto")}
-
+    if(actual!==selectedEmployee.pinHash){pin="";updatePin();return toast("PIN incorrecto")}
     ownerMode=false;
     try{if(auth.currentUser)await signOut(auth)}catch{}
     await signInAnonymously(auth);
-
     currentEmployee={...selectedEmployee};
-    $("login").classList.add("hidden");
-    $("app").classList.remove("hidden");
+    $("login").classList.add("hidden");$("app").classList.remove("hidden");
     $("currentEmployee").textContent=currentEmployee.name;
     page="home";
-    await loadEmployeeData();
+    await refreshSales();
     render();
-  }catch(e){
-    console.error(e);
-    toast("No se pudo iniciar sesión");
-  }
+  }catch(e){console.error(e);toast("No se pudo iniciar sesión")}
 };
-
-async function loadEmployeeData(){
-  try{
-    const q=await getDocs(query(collection(db,"sales"),orderBy("createdAt","desc")));
-    sales=q.docs.map(d=>({id:d.id,...d.data()}));
-  }catch{sales=[]}
-  try{
-    const i=await getDocs(collection(db,"inventory"));
-    inventory=i.docs.map(d=>({id:d.id,...d.data()}));
-  }catch{inventory=[]}
-}
 
 window.ownerLogin=async()=>{
   const email=$("ownerEmail").value.trim();
   const password=$("ownerPassword").value;
   if(!email||!password)return toast("Escribe correo y contraseña");
-
   try{
     await signInWithEmailAndPassword(auth,email,password);
     ownerMode=true;
+    await loadCore();
 
-    let existing=employees.find(e=>e.email?.toLowerCase()===email.toLowerCase());
+    let existing=employees.find(e=>e.id===auth.currentUser.uid);
+    if(!existing)existing=employees.find(e=>e.email?.toLowerCase()===email.toLowerCase());
+
     if(!existing){
       const name=email.toLowerCase().startsWith("itzel")?"Itzel":"Ramón";
       existing={id:auth.currentUser.uid,name,role:"Owner",email,active:true};
-      await setDoc(doc(db,"employees",auth.currentUser.uid),existing);
+      await setDoc(doc(db,"employees",existing.id),existing,{merge:true});
       employees.push(existing);
+    }else{
+      existing.role="Owner";
+      existing.email=email;
+      existing.active=true;
+      await setDoc(doc(db,"employees",existing.id),{role:"Owner",email,active:true},{merge:true});
     }
 
     currentEmployee={...existing,role:"Owner"};
-    $("login").classList.add("hidden");
-    $("app").classList.remove("hidden");
+    $("login").classList.add("hidden");$("app").classList.remove("hidden");
     $("currentEmployee").textContent=currentEmployee.name;
     page="home";
-    await loadCore();
     render();
-  }catch(e){
-    console.error(e);
-    toast("Correo o contraseña de Firebase incorrectos");
-  }
+
+    if(!currentEmployee.pinHash)setTimeout(()=>openOwnerPinModal(),250);
+  }catch(e){console.error(e);toast("Correo o contraseña de Firebase incorrectos")}
 };
 
 window.switchEmployee=async()=>{
@@ -282,16 +279,19 @@ window.switchEmployee=async()=>{
   ownerMode=false;currentEmployee=null;selectedEmployee=null;pin="";
   $("app").classList.add("hidden");$("login").classList.remove("hidden");
   $("ownerPassword").value="";
+  $("loginMessage").textContent="";
   updatePin();renderEmployees();
 };
 
 window.go=(p,b)=>{
+  if((p==="inventory"||p==="cash"||p==="reports"||p==="employees"||p==="settings")&&!isOwner()){
+    toast("Solo Owner puede entrar aquí");return;
+  }
   page=p;
   document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
   if(b)b.classList.add("active");
   render();
 };
-
 function render(){
   if(page==="home")home();
   if(page==="sale")salePage();
@@ -313,16 +313,17 @@ function home(){
       <div class="stat"><span>Ventas hoy</span><strong>${money(total)}</strong></div>
       <div class="stat"><span>Tickets</span><strong>${t.length}</strong></div>
       <div class="stat"><span>Gramos</span><strong>${grams} g</strong></div>
-      <div class="stat"><span>Estado</span><strong>☁️ Online</strong></div>
+      <div class="stat"><span>Estado</span><strong>${navigator.onLine?"☁️ Online":"📴 Offline"}</strong></div>
     </div>
     <div class="grid">
       <button class="card menu-card" onclick="go('sale')"><div class="icon">🧾</div><b>Nueva venta</b><span>Cobrar por gramos</span></button>
-      <button class="card menu-card" onclick="go('inventory')"><div class="icon">📦</div><b>Inventario</b><span>Existencias</span></button>
-      <button class="card menu-card" onclick="go('cash')"><div class="icon">💵</div><b>Caja</b><span>Corte del día</span></button>
-      <button class="card menu-card" onclick="go('reports')"><div class="icon">📊</div><b>Reportes</b><span>Historial</span></button>
       ${isOwner()?`
-        <button class="card menu-card" onclick="go('employees')"><div class="icon">👥</div><b>Empleados</b><span>Usuarios y permisos</span></button>
-        <button class="card menu-card" onclick="go('settings')"><div class="icon">⚙️</div><b>Configuración</b><span>Solo Owner</span></button>`:""}
+      <button class="card menu-card" onclick="go('inventory')"><div class="icon">📦</div><b>Inventario</b><span>Existencias físicas</span></button>
+      <button class="card menu-card" onclick="go('cash')"><div class="icon">💵</div><b>Caja</b><span>Corte diario</span></button>
+      <button class="card menu-card" onclick="go('reports')"><div class="icon">📊</div><b>Reportes</b><span>Día · semana · mes</span></button>
+      <button class="card menu-card" onclick="go('employees')"><div class="icon">👥</div><b>Empleados</b><span>Crear y editar</span></button>
+      <button class="card menu-card" onclick="go('settings')"><div class="icon">⚙️</div><b>Configuración</b><span>Precio por gramo</span></button>
+      <button class="card menu-card" onclick="openOwnerPinModal()"><div class="icon">🔐</div><b>Mi PIN</b><span>Crear o cambiar PIN</span></button>`:""}
     </div>`;
 }
 
@@ -335,12 +336,13 @@ function salePage(){
       <label>¿Cuánto entrega el cliente?</label>
       <input id="cashReceived" type="number" inputmode="decimal" step="0.01" placeholder="${total.toFixed(2)}" value="${sale.received}" oninput="updateReceived(this.value)">
       <div class="change-box">
-        <div>${received>=total&&received>0?"Cambio a devolver":received>0?"Faltan por pagar":"Introduce el efectivo recibido"}</div>
+        <div id="changeLabel">${received>=total&&received>0?"Cambio a devolver":received>0?"Faltan por pagar":"Introduce el efectivo recibido"}</div>
         <strong id="changeAmount">${received>0?money(Math.abs(change)):"$0.00"}</strong>
       </div>`;
   }
   $("content").innerHTML=`
-    <h1>Nueva venta</h1><p class="subtitle">Precio calculado por gramo.</p>
+    <h1>Nueva venta</h1>
+    <p class="subtitle">La venta se calcula exclusivamente por gramos.</p>
     <div class="card">
       <label>Peso en gramos</label>
       <input id="gramsInput" type="number" inputmode="decimal" step="0.01" placeholder="Ej. 213" value="${sale.grams}">
@@ -352,8 +354,10 @@ function salePage(){
         <button class="pay ${sale.payment===p?"active":""}" onclick="setPayment('${p}')">${p==="Efectivo"?"💵":p==="Tarjeta"?"💳":""}<br>${p}</button>`).join("")}</div>
       ${paymentArea}<br>
       <button class="primary" id="chargeBtn" onclick="chargeSale()">COBRAR ${money(total)}</button>
-    </div>`;
-  $("gramsInput").addEventListener("input",e=>{sale.grams=e.target.value;updateSaleDisplay()});
+    </div>
+    <div class="card" style="margin-top:14px"><div class="row"><span class="small-note">Estado</span><span class="badge">Venta pendiente</span></div><p class="small-note">Puedes cambiar gramos, peso y método de pago antes de cobrar. Después de cobrar queda bloqueada como ticket histórico.</p></div>`;
+  const input=$("gramsInput");
+  input.addEventListener("input",e=>{sale.grams=e.target.value;updateSaleDisplay()});
 }
 function updateSaleDisplay(){
   const grams=Number(sale.grams)||0,total=grams*Number(settings.pricePerGram||0);
@@ -365,16 +369,15 @@ function updateSaleDisplay(){
 window.setPayment=p=>{sale.payment=p;if(p!=="Efectivo")sale.received="";salePage()};
 window.updateReceived=value=>{
   sale.received=value;
-  const total=(Number(sale.grams)||0)*Number(settings.pricePerGram||0),received=Number(value)||0,change=received-total;
-  const box=document.querySelector(".change-box");
-  if(box)box.innerHTML=`<div>${received>=total&&received>0?"Cambio a devolver":received>0?"Faltan por pagar":"Introduce el efectivo recibido"}</div><strong id="changeAmount">${received>0?money(Math.abs(change)):"$0.00"}</strong>`;
+  const total=(Number(sale.grams)||0)*Number(settings.pricePerGram||0);
+  const received=Number(value)||0,change=received-total;
+  if($("changeLabel"))$("changeLabel").textContent=received>=total&&received>0?"Cambio a devolver":received>0?"Faltan por pagar":"Introduce el efectivo recibido";
+  if($("changeAmount"))$("changeAmount").textContent=received>0?money(Math.abs(change)):"$0.00";
 };
-
 window.chargeSale=async()=>{
   const grams=Number(sale.grams)||0,total=grams*Number(settings.pricePerGram||0);
   if(grams<=0)return toast("Introduce el peso");
   if(sale.payment==="Efectivo"&&Number(sale.received)<total)return toast("El efectivo no alcanza para cobrar");
-
   const btn=$("chargeBtn");if(btn){btn.disabled=true;btn.textContent="GUARDANDO…"}
   const received=sale.payment==="Efectivo"?Number(sale.received):total;
   const s={id:uid("VENTA"),date:today(),time:timeNow(),grams,pricePerGram:Number(settings.pricePerGram),total,payment:sale.payment,received,change:sale.payment==="Efectivo"?received-total:0,employeeId:currentEmployee.id,employee:currentEmployee.name,status:"PAID",cancelled:false,createdAt:serverTimestamp()};
@@ -383,45 +386,181 @@ window.chargeSale=async()=>{
     sales.unshift({...s,createdAt:new Date()});
     sale={grams:"",payment:"Efectivo",received:""};
     toast("Venta cobrada ✓");
-    setTimeout(()=>go("home"),250);
-  }catch(e){
-    console.error(e);if(btn)btn.disabled=false;
-    toast("No se pudo guardar la venta en Firebase");
-  }
+    salePage();
+  }catch(e){console.error(e);if(btn)btn.disabled=false;toast("No se pudo guardar la venta en Firebase")}
 };
 
 function inventoryPage(){
+  if(!requireOwner())return;
   $("content").innerHTML=`
-    <div class="row"><div><h1>Inventario</h1><p class="subtitle">Control de existencias.</p></div>${isOwner()?`<button class="secondary" onclick="inventoryModal()">＋ Agregar</button>`:""}</div>
+    <div class="row"><div><h1>Inventario</h1><p class="subtitle">Control físico de existencias.</p></div><button class="secondary" onclick="inventoryModal()">＋ Agregar</button></div>
     <div class="card">${inventory.length?`<table class="table"><thead><tr><th>Artículo</th><th>Unidad</th><th>Inicio</th><th>Actual</th></tr></thead><tbody>${inventory.map(x=>`<tr><td><b>${x.name}</b></td><td>${x.unit}</td><td>${x.start}</td><td><b>${x.current}</b></td></tr>`).join("")}</tbody></table>`:`<div class="empty">No hay artículos registrados.</div>`}</div>`;
 }
-window.inventoryModal=()=>{if(!requireOwner())return;$("modalBox").innerHTML=`<h2>Agregar inventario</h2><label>Nombre</label><input id="invName" placeholder="Ej. Oreo"><label>Unidad</label><select id="invUnit"><option>Caja</option><option>Pieza</option><option>Bolsa</option><option>Kg</option><option>Litro</option></select><label>Existencia inicial</label><input id="invStart" type="number" inputmode="decimal" min="0"><br><br><button class="primary" onclick="addInventory()">GUARDAR</button>`;openModal()};
-window.addInventory=async()=>{if(!requireOwner())return;const name=$("invName").value.trim(),unit=$("invUnit").value,start=Number($("invStart").value)||0;if(!name)return toast("Escribe el nombre");const x={id:uid("INV"),name,unit,start,current:start};try{await setDoc(doc(db,"inventory",x.id),x);inventory.push(x);closeModal();inventoryPage();toast("Inventario agregado ✓")}catch{toast("No se pudo guardar en Firebase")}};
+window.inventoryModal=()=>{if(!requireOwner())return;$("modalBox").innerHTML=`<h2>Agregar inventario</h2><label>Nombre</label><input id="invName" placeholder="Ej. Galletas Oreo"><label>Unidad</label><select id="invUnit"><option>Caja</option><option>Pieza</option><option>Batida</option><option>Bolsa</option><option>Kg</option><option>Litro</option></select><label>Existencia inicial</label><input id="invStart" type="number" inputmode="decimal" min="0"><br><br><button class="primary" onclick="addInventory()">GUARDAR</button>`;openModal()};
+window.addInventory=async()=>{
+  if(!requireOwner())return;
+  const name=$("invName").value.trim(),unit=$("invUnit").value,start=Number($("invStart").value)||0;
+  if(!name)return toast("Escribe el nombre");
+  const x={id:uid("INV"),name,unit,start,current:start};
+  try{await setDoc(doc(db,"inventory",x.id),x);inventory.push(x);closeModal();inventoryPage();toast("Inventario agregado ✓")}catch{toast("No se pudo guardar en Firebase")}
+};
 
 function cashPage(){
+  if(!requireOwner())return;
   const t=sales.filter(s=>s.date===today()&&!s.cancelled);
   const cash=t.filter(s=>s.payment==="Efectivo").reduce((a,b)=>a+Number(b.total||0),0);
   const card=t.filter(s=>s.payment==="Tarjeta").reduce((a,b)=>a+Number(b.total||0),0);
   const apple=t.filter(s=>s.payment==="Apple Pay").reduce((a,b)=>a+Number(b.total||0),0);
+  const existing=cashClosings.find(c=>c.date===today());
   $("content").innerHTML=`
-    <h1>Caja</h1><p class="subtitle">Corte del día ${today()}</p>
+    <h1>Caja</h1><p class="subtitle">Corte diario · ${today()}</p>
     <div class="stats"><div class="stat"><span>Total</span><strong>${money(cash+card+apple)}</strong></div><div class="stat"><span>Efectivo esperado</span><strong>${money(cash)}</strong></div><div class="stat"><span>Tarjeta</span><strong>${money(card)}</strong></div><div class="stat"><span>Apple Pay</span><strong>${money(apple)}</strong></div></div>
-    <div class="card"><h2>Corte de caja</h2><p class="subtitle">${t.length?t.length+" venta(s) registradas.":"Todavía no hay ventas. El corte inicia en $0.00."}</p>
+    <div class="card"><h2>Corte de caja</h2>
+    <p class="subtitle">${t.length?t.length+" venta(s) registradas.":"Todavía no hay ventas. El corte comienza en $0.00."}</p>
+    ${existing?`<div class="change-box"><b>Ya existe un corte de hoy.</b><br><span class="small-note">Contado: ${money(existing.real)} · Diferencia: ${money(existing.difference)}</span></div>`:""}
     <label>Efectivo contado físicamente</label><input id="cashReal" type="number" inputmode="decimal" step="0.01" placeholder="0.00"><br><br>
-    <button class="primary" onclick="closeCash(${cash})">CERRAR CAJA</button></div>`;
+    <button class="primary" onclick="closeCash(${cash})">${existing?"REGISTRAR OTRO CORTE":"CERRAR CAJA"}</button></div>`;
 }
-window.closeCash=async expected=>{const real=Number($("cashReal").value);if(!Number.isFinite(real)||real<0)return toast("Introduce el efectivo contado");const c={id:uid("CORTE"),date:today(),time:timeNow(),expected:Number(expected),real,difference:real-Number(expected),employeeId:currentEmployee.id,employee:currentEmployee.name,createdAt:serverTimestamp()};try{await setDoc(doc(db,"cashClosings",c.id),c);cashClosings.unshift(c);toast(c.difference===0?"Corte correcto ✓":"Corte guardado");}catch{toast("No se pudo guardar el corte")}};
+window.closeCash=async expected=>{
+  if(!requireOwner())return;
+  const real=Number($("cashReal").value);
+  if(!Number.isFinite(real)||real<0)return toast("Introduce el efectivo contado");
+  const existing=cashClosings.find(c=>c.date===today());
+  if(existing&&!confirm("Ya existe un corte para hoy. ¿Quieres registrar otro?"))return;
+  const c={id:uid("CORTE"),date:today(),time:timeNow(),expected:Number(expected),real,difference:real-Number(expected),employeeId:currentEmployee.id,employee:currentEmployee.name,closed:true,createdAt:serverTimestamp()};
+  try{await setDoc(doc(db,"cashClosings",c.id),c);cashClosings.unshift({...c,createdAt:new Date()});toast(c.difference===0?"Corte correcto ✓":"Corte guardado ✓");setTimeout(()=>go("reports"),300)}catch{toast("No se pudo guardar el corte")}
+};
 
-function reportsPage(){
-  $("content").innerHTML=`<h1>Reportes</h1><p class="subtitle">Historial de ventas guardadas en Firebase.</p><div class="card">${sales.length?`<table class="table"><thead><tr><th>Venta</th><th>Peso</th><th>Total</th><th>Pago</th><th>Empleado</th></tr></thead><tbody>${sales.map(s=>`<tr><td><b>${s.id}</b><br><small>${s.date} · ${s.time}</small></td><td>${s.grams} g</td><td>${money(s.total)}</td><td><span class="badge">${s.payment}</span></td><td>${s.employee}</td></tr>`).join("")}</tbody></table>`:`<div class="empty">Todavía no hay ventas.</div>`}</div>`;
+function monthName(key){
+  const [y,m]=key.split("-").map(Number);
+  return new Date(y,m-1,1).toLocaleDateString("es-MX",{month:"long",year:"numeric"});
 }
+function getMonthKey(){
+  if(reportMonth)return reportMonth;
+  const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
+}
+function weekNumberInMonth(date){
+  const first=new Date(date.getFullYear(),date.getMonth(),1);
+  return Math.ceil((date.getDate()+first.getDay())/7);
+}
+function reportsPage(){
+  if(!requireOwner())return;
+  const monthKey=getMonthKey();
+  const monthSales=sales.filter(s=>String(s.date||"").startsWith(monthKey)&&!s.cancelled);
+  const monthTotal=monthSales.reduce((a,b)=>a+Number(b.total||0),0);
+  const monthGrams=monthSales.reduce((a,b)=>a+Number(b.grams||0),0);
+  const monthCash=monthSales.filter(s=>s.payment==="Efectivo").reduce((a,b)=>a+Number(b.total||0),0);
+  const monthCard=monthSales.filter(s=>s.payment==="Tarjeta").reduce((a,b)=>a+Number(b.total||0),0);
+  const monthApple=monthSales.filter(s=>s.payment==="Apple Pay").reduce((a,b)=>a+Number(b.total||0),0);
+  const days=[...new Set(monthSales.map(s=>s.date))].sort().reverse();
+
+  const weekly={};
+  monthSales.forEach(s=>{
+    const d=new Date(s.date+"T12:00:00"),w=weekNumberInMonth(d),key="Semana "+w;
+    if(!weekly[key])weekly[key]={total:0,tickets:0,grams:0,cash:0,card:0,apple:0};
+    weekly[key].total+=Number(s.total||0);weekly[key].tickets++;weekly[key].grams+=Number(s.grams||0);
+    if(s.payment==="Efectivo")weekly[key].cash+=Number(s.total||0);
+    if(s.payment==="Tarjeta")weekly[key].card+=Number(s.total||0);
+    if(s.payment==="Apple Pay")weekly[key].apple+=Number(s.total||0);
+  });
+
+  const dayCards=days.map(day=>{
+    const ds=monthSales.filter(s=>s.date===day);
+    const total=ds.reduce((a,b)=>a+Number(b.total||0),0),grams=ds.reduce((a,b)=>a+Number(b.grams||0),0);
+    const cash=ds.filter(s=>s.payment==="Efectivo").reduce((a,b)=>a+Number(b.total||0),0);
+    const card=ds.filter(s=>s.payment==="Tarjeta").reduce((a,b)=>a+Number(b.total||0),0);
+    const apple=ds.filter(s=>s.payment==="Apple Pay").reduce((a,b)=>a+Number(b.total||0),0);
+    const cuts=cashClosings.filter(c=>c.date===day);
+    return `<details class="card day-card">
+      <summary><div class="row"><b>${day}</b><b>${money(total)}</b></div><div class="small-note">${ds.length} tickets · ${grams} g · ${cuts.length?"Corte realizado":"Sin corte registrado"}</div></summary>
+      <p class="small-note">Efectivo ${money(cash)} · Tarjeta ${money(card)} · Apple Pay ${money(apple)}</p>
+      <table class="table"><thead><tr><th>Hora</th><th>Ticket</th><th>Gramos</th><th>Total</th><th>Pago</th><th>Empleado</th></tr></thead>
+      <tbody>${ds.sort((a,b)=>String(a.time).localeCompare(String(b.time))).map(x=>`<tr><td>${x.time}</td><td>${x.id}</td><td>${x.grams} g</td><td>${money(x.total)}</td><td><span class="badge">${x.payment}</span></td><td>${x.employee}</td></tr>`).join("")}</tbody></table>
+      <div style="margin-top:12px;padding:12px;border-radius:16px;background:#f8e7f0;font-size:12px">
+        ${cuts.length?cuts.map(c=>`<b>Corte ${c.time}</b> · Esperado ${money(c.expected)} · Contado ${money(c.real)} · Diferencia ${money(c.difference)} · ${c.employee}`).join("<br>"):"<b>Corte diario:</b> todavía no realizado"}
+      </div>
+    </details>`;
+  }).join("");
+
+  $("content").innerHTML=`
+    <h1>Reportes</h1><p class="subtitle">Historial permanente de Firebase.</p>
+    <div class="month-nav"><button class="secondary" onclick="changeReportMonth(-1)">‹ Anterior</button><b>${monthName(monthKey)}</b><button class="secondary" onclick="changeReportMonth(1)">Siguiente ›</button></div>
+    <div class="stats">
+      <div class="stat"><span>Ventas del mes</span><strong>${money(monthTotal)}</strong></div>
+      <div class="stat"><span>Tickets</span><strong>${monthSales.length}</strong></div>
+      <div class="stat"><span>Gramos</span><strong>${monthGrams} g</strong></div>
+      <div class="stat"><span>Días con ventas</span><strong>${days.length}</strong></div>
+    </div>
+    <div class="card" style="margin-bottom:14px"><h2>Resumen del mes</h2>
+      <div class="row"><span>Efectivo</span><b>${money(monthCash)}</b></div>
+      <div class="row"><span>Tarjeta</span><b>${money(monthCard)}</b></div>
+      <div class="row"><span>Apple Pay</span><b>${money(monthApple)}</b></div>
+    </div>
+    <div class="card" style="margin-bottom:14px"><h2>Resumen semanal</h2>
+      ${Object.keys(weekly).length?Object.entries(weekly).map(([k,v])=>`<div style="padding:12px 0;border-bottom:1px solid #eee5ea"><div class="row"><b>${k}</b><b>${money(v.total)}</b></div><div class="small-note">${v.tickets} tickets · ${v.grams} g · Efectivo ${money(v.cash)} · Tarjeta ${money(v.card)} · Apple Pay ${money(v.apple)}</div></div>`).join(""):`<div class="empty">No hay ventas este mes.</div>`}
+    </div>
+    <h2>Detalle diario</h2>
+    ${dayCards||`<div class="card"><div class="empty">No hay ventas para este mes.</div></div>`}`;
+}
+window.changeReportMonth=delta=>{
+  const base=reportMonth?new Date(reportMonth+"-15T12:00:00"):new Date();
+  base.setMonth(base.getMonth()+delta);
+  reportMonth=base.getFullYear()+"-"+String(base.getMonth()+1).padStart(2,"0");
+  reportsPage();
+};
 
 function employeesPage(){
   if(!requireOwner())return;
-  $("content").innerHTML=`<div class="row"><div><h1>Empleados</h1><p class="subtitle">Solo Owner puede administrarlos.</p></div><button class="secondary" onclick="employeeModal()">＋ Agregar</button></div>
-  <div class="grid">${employees.map(e=>`<div class="card"><div class="row"><b>${e.name}</b><span class="badge">${e.role}</span></div><p style="font-size:12px;color:#8c858c">${e.email||"PIN local de Nüvy"}</p><span class="status">${e.active!==false?"Activo":"Desactivado"}</span><br><br><button class="secondary" onclick="editEmployee('${e.id}')">Editar</button></div>`).join("")}</div>`;
+  $("content").innerHTML=`
+    <div class="row"><div><h1>Empleados</h1><p class="subtitle">Solo Owner puede administrarlos.</p></div>
+      <div style="display:flex;gap:8px"><button class="secondary" onclick="openOwnerPinModal()">🔐 Mi PIN</button><button class="secondary" onclick="employeeModal()">＋ Agregar</button></div>
+    </div>
+    <div class="grid">${employees.map(e=>`
+      <div class="card">
+        <div class="row"><b>${e.name}</b><span class="badge">${e.role}</span></div>
+        <p style="font-size:12px;color:#8c858c">${e.email||"Empleado con PIN Nüvy"}</p>
+        <span class="status">${e.active!==false?"Activo":"Desactivado"}</span>
+        <p class="small-note">${e.pinHash?"PIN configurado":"PIN no configurado"}</p>
+        <button class="secondary" onclick="editEmployee('${e.id}')">Editar</button>
+      </div>`).join("")}</div>`;
 }
-window.employeeModal=async()=>{if(!requireOwner())return;$("modalBox").innerHTML=`<h2>Nuevo empleado</h2><label>Nombre</label><input id="empName" placeholder="Nombre"><label>PIN de Nüvy</label><input id="empPin" type="password" inputmode="numeric" maxlength="6" placeholder="4 a 6 números"><label>Rol</label><select id="empRole"><option value="Empleado">Empleado</option><option value="Owner">Owner</option></select><br><br><button class="primary" onclick="addEmployee()">CREAR EMPLEADO</button>`;openModal()};
+
+window.openOwnerPinModal=()=>{
+  if(!isOwner())return;
+  $("modalBox").innerHTML=`
+    <h2>Mi PIN</h2>
+    <p class="subtitle">Configura o cambia tu PIN rápido. El PIN se guarda como hash en Firebase; no se guarda como texto.</p>
+    <label>Nuevo PIN</label><input id="ownerPin1" type="password" inputmode="numeric" maxlength="6" placeholder="4 a 6 números">
+    <label>Confirmar PIN</label><input id="ownerPin2" type="password" inputmode="numeric" maxlength="6" placeholder="Repite el PIN">
+    <br><br><button class="primary" onclick="saveOwnerPin()">GUARDAR PIN</button>`;
+  openModal();
+};
+window.saveOwnerPin=async()=>{
+  if(!isOwner())return;
+  const a=$("ownerPin1").value.trim(),b=$("ownerPin2").value.trim();
+  if(!/^\d{4,6}$/.test(a))return toast("El PIN debe tener 4 a 6 números");
+  if(a!==b)return toast("Los PIN no coinciden");
+  try{
+    const pinHash=await hashPin(a);
+    await setDoc(doc(db,"employees",currentEmployee.id),{name:currentEmployee.name,email:currentEmployee.email||"",role:"Owner",active:true,pinHash},{merge:true});
+    currentEmployee={...currentEmployee,pinHash};
+    const i=employees.findIndex(e=>e.id===currentEmployee.id);
+    if(i>=0)employees[i]={...employees[i],pinHash};
+    closeModal();toast("PIN guardado ✓");
+  }catch(e){console.error(e);toast("No se pudo guardar el PIN")}
+};
+
+window.employeeModal=()=>{
+  if(!requireOwner())return;
+  $("modalBox").innerHTML=`
+    <h2>Nuevo empleado</h2>
+    <label>Nombre</label><input id="empName" placeholder="Nombre">
+    <label>PIN de Nüvy</label><input id="empPin" type="password" inputmode="numeric" maxlength="6" placeholder="4 a 6 números">
+    <label>Rol</label><select id="empRole"><option value="Empleado">Empleado</option><option value="Owner">Owner</option></select>
+    <p class="small-note">Si eliges Owner, esa persona también tendrá permisos administrativos. Los Owner deben tener una cuenta de Firebase Authentication para entrar por correo y contraseña.</p>
+    <br><button class="primary" onclick="addEmployee()">CREAR EMPLEADO</button>`;
+  openModal();
+};
 window.addEmployee=async()=>{
   if(!requireOwner())return;
   const name=$("empName").value.trim(),p=$("empPin").value.trim(),role=$("empRole").value;
@@ -433,30 +572,62 @@ window.addEmployee=async()=>{
 window.editEmployee=id=>{
   if(!requireOwner())return;
   const e=employees.find(x=>x.id===id);if(!e)return;
-  $("modalBox").innerHTML=`<h2>Editar empleado</h2><label>Nombre</label><input id="editName" value="${e.name}"><label>Nuevo PIN (déjalo vacío para conservarlo)</label><input id="editPin" type="password" inputmode="numeric" maxlength="6"><label>Rol</label><select id="editRole"><option value="Empleado" ${e.role==="Empleado"?"selected":""}>Empleado</option><option value="Owner" ${e.role==="Owner"?"selected":""}>Owner</option></select><br><br><button class="primary" onclick="updateEmployee('${id}')">GUARDAR CAMBIOS</button><br><br><button class="secondary danger" onclick="toggleEmployee('${id}')">${e.active===false?"Activar empleado":"Desactivar empleado"}</button>`;openModal();
+  $("modalBox").innerHTML=`
+    <h2>Editar empleado</h2>
+    <label>Nombre</label><input id="editName" value="${e.name}">
+    <label>Nuevo PIN</label><input id="editPin" type="password" inputmode="numeric" maxlength="6" placeholder="Déjalo vacío para conservarlo">
+    <label>Rol</label><select id="editRole"><option value="Empleado" ${e.role==="Empleado"?"selected":""}>Empleado</option><option value="Owner" ${e.role==="Owner"?"selected":""}>Owner</option></select>
+    <br><button class="primary" onclick="updateEmployee('${id}')">GUARDAR CAMBIOS</button><br><br>
+    <button class="secondary danger" onclick="toggleEmployee('${id}')">${e.active===false?"Activar empleado":"Desactivar empleado"}</button>`;
+  openModal();
 };
-window.updateEmployee=async id=>{if(!requireOwner())return;const e=employees.find(x=>x.id===id);if(!e)return;const name=$("editName").value.trim(),p=$("editPin").value.trim(),role=$("editRole").value;if(!name)return toast("Falta el nombre");if(p&&!/^\d{4,6}$/.test(p))return toast("PIN inválido");e.name=name;e.role=role;if(p)e.pinHash=await hashPin(p);try{await updateDoc(doc(db,"employees",id),{name:e.name,role:e.role,pinHash:e.pinHash});closeModal();employeesPage();renderEmployees();toast("Empleado actualizado ✓")}catch{toast("No se pudo actualizar")}};
-window.toggleEmployee=async id=>{if(!requireOwner())return;const e=employees.find(x=>x.id===id);if(!e)return;e.active=e.active===false;try{await updateDoc(doc(db,"employees",id),{active:e.active});closeModal();employeesPage();renderEmployees();toast(e.active?"Empleado activado":"Empleado desactivado")}catch{toast("No se pudo actualizar")}};
+window.updateEmployee=async id=>{
+  if(!requireOwner())return;
+  const e=employees.find(x=>x.id===id);if(!e)return;
+  const name=$("editName").value.trim(),p=$("editPin").value.trim(),role=$("editRole").value;
+  if(!name)return toast("Falta el nombre");
+  if(p&&!/^\d{4,6}$/.test(p))return toast("PIN inválido");
+  const data={name,role};
+  e.name=name;e.role=role;
+  if(p){e.pinHash=await hashPin(p);data.pinHash=e.pinHash}
+  try{await updateDoc(doc(db,"employees",id),data);closeModal();employeesPage();renderEmployees();toast("Empleado actualizado ✓")}catch{toast("No se pudo actualizar")};
+};
+window.toggleEmployee=async id=>{
+  if(!requireOwner())return;
+  const e=employees.find(x=>x.id===id);if(!e)return;
+  e.active=e.active===false;
+  try{await updateDoc(doc(db,"employees",id),{active:e.active});closeModal();employeesPage();renderEmployees();toast(e.active?"Empleado activado":"Empleado desactivado")}catch{toast("No se pudo actualizar")}
+};
 
 function settingsPage(){
   if(!requireOwner())return;
-  $("content").innerHTML=`<h1>Configuración</h1><p class="subtitle">Solo Owner.</p><div class="card"><h2>Precio de venta</h2><label>Precio por gramo</label><input id="priceGram" type="number" inputmode="decimal" step="0.01" min="0" value="${settings.pricePerGram}"><p style="font-size:12px;color:#8c858c">Ejemplo: $0.40 × 213 g = $85.20.</p><button class="primary" onclick="savePrice()">GUARDAR PRECIO</button></div>`;
+  $("content").innerHTML=`
+    <h1>Configuración</h1><p class="subtitle">Solo Ramón e Itzel.</p>
+    <div class="card"><h2>Precio de venta</h2><label>Precio por gramo</label>
+      <input id="priceGram" type="number" inputmode="decimal" step="0.01" min="0" value="${settings.pricePerGram}">
+      <p style="font-size:12px;color:#8c858c">Ejemplo: $0.40 × 213 g = $85.20.</p>
+      <button class="primary" onclick="savePrice()">GUARDAR PRECIO</button>
+    </div>`;
 }
-window.savePrice=async()=>{if(!requireOwner())return;const v=Number($("priceGram").value);if(!Number.isFinite(v)||v<=0)return toast("Precio inválido");try{settings.pricePerGram=v;await setDoc(doc(db,"settings","main"),settings);toast("Precio actualizado ✓")}catch{toast("No se pudo guardar")}};
+window.savePrice=async()=>{
+  if(!requireOwner())return;
+  const v=Number($("priceGram").value);
+  if(!Number.isFinite(v)||v<=0)return toast("Precio inválido");
+  try{settings.pricePerGram=v;await setDoc(doc(db,"settings","main"),settings,{merge:true});toast("Precio actualizado ✓")}catch{toast("No se pudo guardar")}
+};
 
-function openModal(){$("modal").classList.add("show")}window.closeModal=()=>$("modal").classList.remove("show");
+function openModal(){$("modal").classList.add("show")}
+window.closeModal=()=>$("modal").classList.remove("show");
 
-onAuthStateChanged(auth,async user=>{
-  if(user){
-    setFirebaseStatus("☁️ Firebase conectado");
-  }
+window.addEventListener("online",()=>setFirebaseStatus("☁️ Internet conectado · Firebase sincronizando"));
+window.addEventListener("offline",()=>setFirebaseStatus("📴 Sin internet · Firebase conservará los datos localmente"));
+
+onAuthStateChanged(auth,user=>{
+  if(user)setFirebaseStatus(navigator.onLine?"☁️ Firebase conectado":"📴 Sin internet · datos locales");
 });
 
 (async()=>{
   try{
-    // Arranque rápido para empleados: autenticación anónima.
-    // Esto permite que las ventas puedan guardarse sin convertir
-    // los PIN de Nüvy en cuentas de correo.
     await signInAnonymously(auth);
     await loadCore();
   }catch(e){

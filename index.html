@@ -75,9 +75,9 @@ main{max-width:1100px;margin:auto;padding:24px 17px}h1{font-size:30px;margin:4px
       <h3>Acceso Owner</h3>
       <div style="font-size:12px;color:#8c858c;margin-bottom:12px">Entra con tu correo y contraseña de Owner.</div>
       <label>Correo electrónico</label>
-      <input id="ownerEmail" type="email" autocomplete="username" placeholder="Correo electrónico">
+      <input id="ownerEmail" type="email" autocomplete="username" placeholder="Correo electrónico" onkeydown="if(event.key==='Enter')$('ownerPassword').focus()">
       <label>Contraseña</label>
-      <input id="ownerPassword" type="password" autocomplete="current-password" placeholder="Contraseña">
+      <input id="ownerPassword" type="password" autocomplete="current-password" placeholder="Contraseña" onkeydown="if(event.key==='Enter')ownerLogin()">
       <br><br>
       <button class="primary" onclick="ownerLogin()">ENTRAR COMO OWNER</button>
     </div>
@@ -228,7 +228,7 @@ window.loginEmployee=async()=>{
   try{
     const actual=await hashPin(pin);
     if(actual!==selectedEmployee.pinHash){pin="";updatePin();return toast("PIN incorrecto")}
-    ownerMode=false;
+    ownerMode=selectedEmployee.role==="Owner";
     try{if(auth.currentUser)await signOut(auth)}catch{}
     await signInAnonymously(auth);
     currentEmployee={...selectedEmployee};
@@ -344,8 +344,8 @@ function salePage(){
     <h1>Nueva venta</h1>
     <p class="subtitle">La venta se calcula exclusivamente por gramos.</p>
     <div class="card">
-      <label>Peso en gramos</label>
-      <input id="gramsInput" type="number" inputmode="decimal" step="0.01" placeholder="Ej. 213" value="${sale.grams}">
+      <div class="row"><label style="margin:0">Peso en gramos</label><button class="secondary" style="padding:4px 10px;font-size:11px" onclick="clearWeight()">Limpiar</button></div>
+      <input id="gramsInput" type="number" inputmode="decimal" step="0.01" placeholder="Ej. 213" value="${sale.grams}" style="margin-top:7px">
       <div class="weight"><span id="weightDisplay">${grams}</span> g</div>
       <div class="total" id="saleTotal">${money(total)}</div>
       <div class="row"><span style="color:#8c858c;font-size:12px">Precio por gramo</span><b>${money(settings.pricePerGram)}</b></div>
@@ -366,6 +366,11 @@ function updateSaleDisplay(){
   const btn=$("chargeBtn");if(btn)btn.textContent="COBRAR "+money(total);
   const input=$("cashReceived");if(input)updateReceived(input.value);
 }
+window.clearWeight=()=>{
+  sale.grams="";
+  if($("gramsInput"))$("gramsInput").value="";
+  updateSaleDisplay();
+};
 window.setPayment=p=>{sale.payment=p;if(p!=="Efectivo")sale.received="";salePage()};
 window.updateReceived=value=>{
   sale.received=value;
@@ -474,8 +479,8 @@ function reportsPage(){
     return `<details class="card day-card">
       <summary><div class="row"><b>${day}</b><b>${money(total)}</b></div><div class="small-note">${ds.length} tickets · ${grams} g · ${cuts.length?"Corte realizado":"Sin corte registrado"}</div></summary>
       <p class="small-note">Efectivo ${money(cash)} · Tarjeta ${money(card)} · Apple Pay ${money(apple)}</p>
-      <table class="table"><thead><tr><th>Hora</th><th>Ticket</th><th>Gramos</th><th>Total</th><th>Pago</th><th>Empleado</th></tr></thead>
-      <tbody>${ds.sort((a,b)=>String(a.time).localeCompare(String(b.time))).map(x=>`<tr><td>${x.time}</td><td>${x.id}</td><td>${x.grams} g</td><td>${money(x.total)}</td><td><span class="badge">${x.payment}</span></td><td>${x.employee}</td></tr>`).join("")}</tbody></table>
+      <table class="table"><thead><tr><th>Hora</th><th>Ticket</th><th>Gramos</th><th>Total</th><th>Pago</th><th>Empleado</th><th>Acción</th></tr></thead>
+      <tbody>${ds.sort((a,b)=>String(a.time).localeCompare(String(b.time))).map(x=>`<tr><td>${x.time}</td><td>${x.id}</td><td>${x.grams} g</td><td>${money(x.total)}</td><td><span class="badge">${x.payment}</span></td><td>${x.employee}</td><td><button class="secondary danger" style="padding:4px 8px;font-size:10px" onclick="cancelSale('${x.id}')">Cancelar</button></td></tr>`).join("")}</tbody></table>
       <div style="margin-top:12px;padding:12px;border-radius:16px;background:#f8e7f0;font-size:12px">
         ${cuts.length?cuts.map(c=>`<b>Corte ${c.time}</b> · Esperado ${money(c.expected)} · Contado ${money(c.real)} · Diferencia ${money(c.difference)} · ${c.employee}`).join("<br>"):"<b>Corte diario:</b> todavía no realizado"}
       </div>
@@ -507,6 +512,16 @@ window.changeReportMonth=delta=>{
   base.setMonth(base.getMonth()+delta);
   reportMonth=base.getFullYear()+"-"+String(base.getMonth()+1).padStart(2,"0");
   reportsPage();
+};
+window.cancelSale=async id=>{
+  if(!requireOwner())return;
+  if(!confirm("¿Seguro que deseas cancelar esta venta?"))return;
+  try{
+    await updateDoc(doc(db,"sales",id),{cancelled:true});
+    const s=sales.find(x=>x.id===id);if(s)s.cancelled=true;
+    toast("Venta cancelada ✓");
+    reportsPage();
+  }catch(e){console.error(e);toast("No se pudo cancelar la venta")}
 };
 
 function employeesPage(){
